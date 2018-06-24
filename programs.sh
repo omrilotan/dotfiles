@@ -2,7 +2,6 @@
 source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 
-
 # Nodejs, NVM
 [[ -s "$HOME/.nvm/nvm.sh" ]] && \. "$HOME/.nvm/nvm.sh"
 export NPMRC=$(cat ~/.npmrc) # For docker images etc.

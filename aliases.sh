@@ -19,6 +19,7 @@ alias hosts='edit /etc/hosts'
 alias edit=sub
 alias sub='/Applications/Sublime\ Text\.app/Contents/SharedSupport/bin/subl'
 alias atom='/Applications/Atom.app/Contents/Resources/app/atom.sh'
+alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias github='/Applications/GitHub\ Desktop.app/Contents/Resources/app/static/github.sh open $(pwd)'
 
 # Mac

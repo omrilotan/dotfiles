@@ -14,6 +14,10 @@ alias ports='lsof -i -P | grep -i listen'
 alias ip='ipconfig getifaddr en0'
 alias flushcache='sudo dscacheutil -flushcache'
 alias hosts='edit /etc/hosts'
+alias noidle='pmset noidle &'
+function idle {
+	ps aux | grep noidle | awk '{print $2}' | while read in; do echo "$in"; done;
+}
 
 # Editors
 alias edit=sub

@@ -6,8 +6,8 @@ alias paste=pbpaste
 alias now='date +%Y-%m-%d\ %H:%M'
 
 # Dotfiles
-alias reload='source ~/.dotfiles/init.sh'
-alias dotfiles='sub ~/.dotfiles'
+alias reload='source ~/dotfiles/init.sh'
+alias dotfiles='sub ~/dotfiles'
 
 # network
 alias ports='lsof -i -P | grep -i listen'

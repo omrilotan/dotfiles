@@ -1,13 +1,13 @@
 # General
-alias l='ls -lahp'
+alias l='ls -lAhFG' # l(long)A(all but dot)h(human readable volumes)F(type symbols)G(colourise)
 alias q='exit'
 alias copy=pbcopy
 alias paste=pbpaste
-alias now='date +%Y-%m-%d\ %H:%M'
+alias ts='date +%Y-%m-%d\ %H:%M'
 
 # Dotfiles
 alias reload='source ~/dotfiles/init.sh'
-alias dotfiles='sub ~/dotfiles'
+alias dotfiles='edit ~/dotfiles'
 
 # network
 alias ports='lsof -i -P | grep -i listen'
@@ -25,6 +25,9 @@ alias sub='/Applications/Sublime\ Text\.app/Contents/SharedSupport/bin/subl'
 alias atom='/Applications/Atom.app/Contents/Resources/app/atom.sh'
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias github='/Applications/GitHub\ Desktop.app/Contents/Resources/app/static/github.sh open $(pwd)'
+
+# JS
+alias scripts="cat package.json | jq '.scripts'"
 
 # Mac
 alias bg='open /Library/Caches/com.apple.desktop.admin.png'

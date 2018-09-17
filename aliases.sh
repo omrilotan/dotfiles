@@ -1,8 +1,10 @@
 # General
-alias l='ls -lAhFG' # l(long)A(all but dot)h(human readable volumes)F(type symbols)G(colourise)
+alias holdmybeer=sudo
+alias l='ls -lAhFG --color' # l(long)A(all but dot)h(human readable volumes)F(type symbols)G(colourise)
 alias q='exit'
 alias copy=pbcopy
 alias paste=pbpaste
+alias date='gdate' # brew install coreutils
 alias ts='date +%Y-%m-%d\ %H:%M'
 
 # Dotfiles

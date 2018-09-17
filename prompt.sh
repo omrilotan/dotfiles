@@ -1,6 +1,8 @@
 GIT_PS1_SHOWDIRTYSTATE=true
-bind 'set completion-ignore-case on'
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWUPSTREAM=true
+GIT_PS1_STATESEPARATOR=' '
+GIT_PS1_SHOWCOLORHINTS=true
 
 # \d – Current date
 # \t – Current time

@@ -10,11 +10,8 @@
 !.gitattributes
 !setup.sh
 !init.sh
-!path.sh
-!colours.sh
-!prompt.sh
-!aliases.sh
-!functions.sh
+!general
+!general/*.sh
 !programs
 !programs/*.sh
 !hyper.js

@@ -7,14 +7,15 @@ This is running with Bash on a Mac
 
 `dotfiles` directory holds all subsequent settings. This helps visibility.
 
-The entry point is `~/dotfiles/init.sh`. It holds the list of files to load.
-all `.sh` files under the directories `programs` and `custom` (that one's yours) will be loaded as well.
+The entry point is `~/dotfiles/init.sh`. It holds the list of directories to read and load scripts from.
+all `.sh` files under each of those directories will be loaded.
+`custom` directory is gitignored* so put your private things there.
+
+> \* Files in the repo are **opt in**. Meaning everything is gitignored by default.
 
 Each entry is measured to create visibility of startup cost.
 
 <img src="./dotfiles.gif" style="width:383px;height:383px;background:black;">
-
-Files in the repo are **opt in**. Meaning everything is gitignored by default.
 
 ## Installation
 ```sh

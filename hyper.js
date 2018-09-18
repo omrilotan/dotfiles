@@ -18,4 +18,11 @@ module.exports = {
   plugins: ['hyper-search', 'hypercwd', 'hypertonia', 'hyperline'],
   localPlugins: [],
   keymaps: {},
+  hyperline: {
+    plugins: [
+      'ip',
+      'cpu',
+      'spotify'
+    ]
+  }
 };

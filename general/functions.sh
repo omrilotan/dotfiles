@@ -12,9 +12,18 @@ function google {
 	open "https://www.google.com/?q=$*"
 }
 
-# function bundle {
-# 	open "https://bundlephobia.com/result?p=$*"
-# }
+function bundle {
+	open "https://bundlephobia.com/result?p=$*"
+}
+
+function mkfile {
+	if [ -z "$1" ]; then
+		echo "Please enter file path"
+	else
+		mkdir -p $( dirname "$1") && touch "$1"
+	fi
+}
+
 
 function sitespeed {
 	if [ -z "$1" ]; then

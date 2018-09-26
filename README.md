@@ -15,7 +15,7 @@ all `.sh` files under each of those directories will be loaded.
 
 Each entry is measured to create visibility of startup cost.
 
-<img src="./dotfiles.gif" style="width:383px;height:383px;background:black;">
+<img src="./dotfiles.gif" style="width:328px;">
 
 ## Installation
 ```sh

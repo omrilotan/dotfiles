@@ -34,6 +34,3 @@ alias scripts="cat package.json | jq '.scripts'"
 
 # Mac
 alias bg='open /Library/Caches/com.apple.desktop.admin.png'
-
-# fuck
-eval "$(thefuck --alias)"

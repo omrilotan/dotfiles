@@ -1,1 +1,4 @@
-eval "$(thefuck --alias)"
+function fuck {
+	eval "$(thefuck --alias)"
+	eval "fuck $@"
+}

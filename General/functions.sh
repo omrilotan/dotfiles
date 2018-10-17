@@ -12,10 +12,6 @@ function google {
 	open "https://www.google.com/?q=$*"
 }
 
-function bundle {
-	open "https://bundlephobia.com/result?p=$*"
-}
-
 function mkfile {
 	if [ -z "$1" ]; then
 		echo "Please enter file path"

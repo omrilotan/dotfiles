@@ -21,11 +21,4 @@ for nodecommand in "${nodecommands[@]}"; do
 	eval "function ${nodecommand} { nvm_load; ${nodecommand} \$@; }"
 done
 
-cd() {
-	builtin cd "$1"
-	if [ -f ".nvmrc" ]; then
-		nvm use
-	fi
-}
-
 export NPMRC=$(cat ~/.npmrc) # For docker images etc.

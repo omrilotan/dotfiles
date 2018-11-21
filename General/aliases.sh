@@ -15,6 +15,7 @@ alias dotfiles='edit ~/dotfiles'
 alias ports='lsof -i -P | grep -i listen'
 alias ip='ipconfig getifaddr en0'
 alias flushcache='sudo dscacheutil -flushcache'
+alias dnscacheflush='sudo dscacheutil -flushcache'
 alias hosts='edit /etc/hosts'
 alias noidle='pmset noidle &'
 function idle {

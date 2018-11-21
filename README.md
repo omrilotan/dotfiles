@@ -13,7 +13,7 @@ The entry point is `~/dotfiles/init.sh`. It finds all nested directories and par
 
 Each entry is measured to create visibility of startup cost.
 
-<img src="./dotfiles.gif" style="width:350px;">
+<img src="./dotfiles.gif" style="width:480px;">
 
 ## Installation
 ```sh

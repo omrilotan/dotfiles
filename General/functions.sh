@@ -10,10 +10,6 @@ function dir {
 	cd "$1"
 }
 
-function google {
-	open "https://www.google.com/?q=$*"
-}
-
 function mkfile {
 	if [ -z "$1" ]; then
 		echo "Please enter file path"
@@ -22,11 +18,6 @@ function mkfile {
 	fi
 }
 
-
-function sitespeed {
-	if [ -z "$1" ]; then
-		echo "Please enter a URL"
-	else
-		docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io-autobuild:latest $1
-	fi
+function google {
+	open "https://www.google.com/?q=$*"
 }

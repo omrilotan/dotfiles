@@ -5,7 +5,13 @@ function name {
 alias n=name
 n
 
-function dir {
+function work {
+	edit .
+	git pull origin master
+	name
+}
+
+function mkcd {
 	mkdir "$1"
 	cd "$1"
 }
@@ -20,4 +26,8 @@ function mkfile {
 
 function google {
 	open "https://www.google.com/?q=$*"
+}
+
+function youtube {
+	open "https://www.youtube.com/results?search_query=$*"
 }

@@ -1,11 +1,12 @@
 # General
-alias holdmybeer=sudo
+alias holdmybeer='sudo su'
 alias l='ls -lAhFG --color' # l(long)A(all but dot)h(human readable volumes)F(type symbols)G(colourise)
 alias q='exit'
 alias copy=pbcopy
 alias paste=pbpaste
 alias date='gdate' # brew install coreutils
 alias ts='date +%Y-%m-%d\ %H:%M'
+alias dir='du -sh * | sort -h'
 
 # Dotfiles
 alias reload='source ~/dotfiles/init.sh'
@@ -28,7 +29,6 @@ alias sub='/Applications/Sublime\ Text\.app/Contents/SharedSupport/bin/subl'
 alias atom='/Applications/Atom.app/Contents/Resources/app/atom.sh'
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias github='/Applications/GitHub\ Desktop.app/Contents/Resources/app/static/github.sh open $(pwd)'
-alias work='edit . && git pull origin master'
 
 # JS
 alias scripts="cat package.json | jq '.scripts'"

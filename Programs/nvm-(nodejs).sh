@@ -22,3 +22,7 @@ for nodecommand in "${nodecommands[@]}"; do
 done
 
 export NPMRC=$(cat ~/.npmrc) # For docker images etc.
+
+# Include globally installed NPM packages from default version on NVM
+NVMBIN="$HOME/.nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"
+export PATH="$PATH:$NVMBIN"

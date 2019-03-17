@@ -1,1 +1,1 @@
-export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="$PATH:/usr/local/opt/openssl/bin"

@@ -28,6 +28,27 @@ function headers {
 	curl $1 -svo /dev/null 2>&1 | grep ^\<
 }
 
+function envsize {
+	expr length "$(env)"
+	if [ "$?" == "0" ]; then
+		env > /tmp/__env__
+		wc -c < /tmp/__env__
+		rm /tmp/__env__
+	fi
+}
+
+function path_dedup {
+	nvm use default
+	local PREV_LENGTH=$(expr length "$PATH")
+	export PATH=$(node -p "Array.from(new Set(process.env.PATH.split(':'))).join(':')")
+	local CURR_LENGTH=$(expr length "$PATH")
+	if [[ $PREV_LENGTH == $CURR_LENGTH ]]; then
+		echo "PATH has no duplicates"
+	else
+		echo "Compacted PATH variable from $PREV_LENGTH to $CURR_LENGTH characters"
+	fi
+}
+
 function google {
 	open "https://www.google.com/?q=$*"
 }

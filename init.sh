@@ -2,10 +2,27 @@ LOADING="⏳"
 CHECK_MARK="\033[0;32m\xE2\x9C\x94\033[0m"
 POST_INIT="pudding"
 
+# reset path
+export PATH=""
+export PATH="$PATH:/bin"
+export PATH="$PATH:/sbin"
+export PATH="$PATH:/usr/bin"
+export PATH="$PATH:/usr/sbin"
+export PATH="$PATH:/usr/local/"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:/opt/local/bin/"
+export PATH="$PATH:/opt/local/sbin"
+export PATH="$PATH:/opt/X11/bin"
+
 directories=($(ls -d ~/dotfiles/*/))
 
 # `brew install coreutils` - milliseconds support in date is required. Using gnu date (gdate)
-export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+if [ ! -f "/usr/local/opt/coreutils/libexec/gnubin/date" ]; then
+	echo "Requires gnu date to work"
+fi
 
 STARTALL=$(date +%s)
 

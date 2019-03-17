@@ -24,6 +24,10 @@ function mkfile {
 	fi
 }
 
+function headers {
+	curl $1 -svo /dev/null 2>&1 | grep ^\<
+}
+
 function google {
 	open "https://www.google.com/?q=$*"
 }

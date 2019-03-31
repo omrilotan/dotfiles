@@ -30,7 +30,7 @@ function headers {
 
 function envsize {
 	expr length "$(env)"
-	if [ "$?" == "0" ]; then
+	if [ "$?" != "0" ]; then
 		env > /tmp/__env__
 		wc -c < /tmp/__env__
 		rm /tmp/__env__
@@ -43,7 +43,7 @@ function path_dedup {
 	export PATH=$(node -p "Array.from(new Set(process.env.PATH.split(':'))).join(':')")
 	local CURR_LENGTH=$(expr length "$PATH")
 	if [[ $PREV_LENGTH == $CURR_LENGTH ]]; then
-		echo "PATH has no duplicates"
+		echo "PATH has no duplicates ($CURR_LENGTH characters)"
 	else
 		echo "Compacted PATH variable from $PREV_LENGTH to $CURR_LENGTH characters"
 	fi

@@ -10,8 +10,12 @@ function nvm_load {
 	done
 	unset -f nvm_load
 	if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+		START=$(date +%s)
 		echo "Loading NVM"
 		source "$HOME/.nvm/nvm.sh"
+		END=$(date +%s)
+		DIFF=$(echo "($END - $START)" | bc)
+		echo -e "\033[0;94mLoading NVM took ${DIFF} seconds\033[0m"
 	else
 		echo "Can't find nvm script"
 	fi

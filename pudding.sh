@@ -16,3 +16,10 @@ cd() {
 		fi
 	fi
 }
+
+c() {
+	dir=$1
+	: ${dir:=~}
+
+	builtin cd $dir
+}

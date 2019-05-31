@@ -3,7 +3,6 @@ function name {
 	echo -ne "\033]0;"$title"\007"
 }
 alias n=name
-n
 
 function work {
 	edit .
@@ -17,11 +16,7 @@ function mkcd {
 }
 
 function mkfile {
-	if [ -z "$1" ]; then
-		echo "Please enter file path"
-	else
-		mkdir -p $( dirname "$1") && touch "$1"
-	fi
+	mkdir -p $( dirname "$1") && touch "$1"
 }
 
 function headers {
@@ -38,19 +33,24 @@ function envsize {
 }
 
 function path_dedup {
+	START=$(($(date +%s%N)/1000000))
+	echo "Looking for PATH duplicates"
 	nvm use default
 	local PREV_LENGTH=$(expr length "$PATH")
 	export PATH=$(node -p "Array.from(new Set(process.env.PATH.split(':'))).join(':')")
 	local CURR_LENGTH=$(expr length "$PATH")
 	if [[ $PREV_LENGTH == $CURR_LENGTH ]]; then
-		echo "PATH has no duplicates ($CURR_LENGTH characters)"
+		message="PATH has no duplicates ($CURR_LENGTH characters)"
 	else
-		echo "Compacted PATH variable from $PREV_LENGTH to $CURR_LENGTH characters"
+		message="Compacted PATH variable from $PREV_LENGTH to $CURR_LENGTH characters"
 	fi
+	END=$(($(date +%s%N)/1000000))
+	DIFF=$(echo "$END - $START" | bc)
+	echo -e "\\r${CHECK_MARK} $message \033[0;94m(${DIFF})\033[0m  "
 }
 
 function google {
-	open "https://www.google.com/?q=$*"
+	'open "https://www.google.com/?q=$*"'
 }
 
 function youtube {

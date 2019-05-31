@@ -49,6 +49,7 @@ echo -e "\\r${CHECK_MARK} ${POST_INIT} \033[0;94m(${DIFF})\033[0m  "
 
 ENDALL=$(date +%s)
 DIFFALL=$(echo "($ENDALL - $STARTALL)" | bc)
-echo -e "\033[0;34mEverything took ${DIFFALL} seconds\033[0m"
+echo -e "\033[0;94mEverything took ${DIFFALL} seconds\033[0m"
 
 cd .
+name

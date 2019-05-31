@@ -1,8 +1,11 @@
 GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWUPSTREAM=true
 GIT_PS1_STATESEPARATOR=' '
 GIT_PS1_SHOWCOLORHINTS=true
+GIT_PS1_DESCRIBE_STYLE=default
+GIT_PS1_HIDE_IF_PWD_IGNORED=false
 
 # \n - New line
 # \! - History number
@@ -28,7 +31,7 @@ GIT_PS1_SHOWCOLORHINTS=true
 # yellow: \[\033[33m\]
 # yellow bold: \[\033[33;1m\]
 
-emojis=(⚡️ ➙ ➠ ☞ ➪ ➲ ☛ ⇉ ➘ ⬊ ↪︎ ➤ ✂︎ ✏︎︎ ☕︎ ✈︎ 🚀 🏄 🍒 🍎 ✨ 🔥 🐛 🐌 👉 😶)
+emojis=(⚡️ 🚀 🏄 🍒 🍎 ✨ 🔥 🐛 🐌 👉 😶 🐛 ☕️ 📍 🏮 🎈 🛎 💡 ⚽️ 🍓 🥚 🍪 🍩 🍺 🍻 🌕 🌍 🌞 🌝 🍀 🦎 🦋 🦖 🦕 🧟‍♂️ 👉 👽 🤡 👾 🤙 ✊ 🤘 🧛 ⛄️ 🌼 🍄 ☘️ 🐲 ☁️ 🍬 💎 🎀 💬 💭 🔔)
 RANDOM=$$$(date +%s)
 face=${emojis[$RANDOM % ${#emojis[@]} ]}
 

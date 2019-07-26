@@ -1,6 +1,6 @@
 # 🍮 I come at the end of the meal
 cd() {
-	dir=$1
+	dir=$@
 	: ${dir:=~}
 
 	builtin cd $dir
@@ -18,7 +18,7 @@ cd() {
 }
 
 c() {
-	dir=$1
+	dir=$@
 	: ${dir:=~}
 
 	builtin cd $dir

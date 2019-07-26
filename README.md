@@ -26,9 +26,14 @@ cd dotfiles
 > #### What just happened?
 > - Everything is under `~/dotfiles` directory.
 > - The call to `~/dotfiles/init.sh` has been added to `.bash_profile` if it isn't already there.
-> - `.bash_profile` and `.gitconfig` files have been symlinked in.
-> - `hyper.js` (if exists) has been symlinked out.
-
+> - symlinked files:
+>   - .bash_profile
+>   - .gitconfig
+>   - .npmrc
+>   - .bin
+>   - hosts (/etc/hosts)
+>   - shells (/etc/shells)
+> - `hyper.js` (if exists) has been symlinked **out**.
 
 ### Requirements
 `brew install coreutils` - milliseconds support in date is required. I'm gnu date (gdate)

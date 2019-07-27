@@ -30,8 +30,3 @@ export NPMRC=$(cat ~/.npmrc) # For docker images etc.
 # Include globally installed NPM packages from default version on NVM
 NVMBIN="$HOME/.nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"
 export PATH="$PATH:$NVMBIN"
-
-# Package json access
-alias scripts="cat package.json | jq '.scripts'"
-alias deps="cat package.json | jq '.dependencies'"
-alias devdeps="cat package.json | jq '.devDependencies'"

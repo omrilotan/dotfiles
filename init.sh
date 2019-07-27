@@ -15,7 +15,7 @@ export PATH="$PATH:/opt/local/bin/"
 export PATH="$PATH:/opt/local/sbin"
 export PATH="$PATH:/opt/X11/bin"
 
-directories=($(ls -d ~/dotfiles/*/))
+directories=($(ls -d ~/dotfiles/*/ | grep -v node_modules))
 
 # `brew install coreutils` - milliseconds support in date is required. Using gnu date (gdate)
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"

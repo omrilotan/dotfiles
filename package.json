@@ -4,7 +4,8 @@
   "description": "Install global node modules here to be available across all node versions",
   "private": true,
   "dependencies": {
-    "@cloudflare/wrangler": "^1.0.2",
-    "npm-check": "^5.9.0"
+    "@cloudflare/wrangler": "latest",
+    "npm-check": "latest",
+    "snyk": "latest"
   }
 }

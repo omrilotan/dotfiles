@@ -2,4 +2,4 @@
 export PATH="$PATH:$HOME/bin"
 
 # Global node modules (across node versions)
-export PATH="$PATH:$HOME/node_modules/.bin"
+export PATH="$PATH:$HOME/dotfiles/node_modules/.bin/"

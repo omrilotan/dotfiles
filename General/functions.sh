@@ -15,6 +15,23 @@ function work {
 	name
 }
 
+function notify {
+	osascript -e "display notification \"${*}\" with title \"You asked my to remind you:\""
+}
+
+function chromedev {
+	echo "Gonna open a Chrome instance with a non secure address which is allowed secure operations"
+
+	addr=$1
+	if [ -z "$addr" ]; then
+		echo -e "Base address [http://localhost:1337]"
+		read addr
+		: ${addr:="http://localhost:1337"}
+	fi
+
+	/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --unsafely-treat-insecure-origin-as-secure=$addr
+}
+
 function mkcd {
 	mkdir "$1"
 	cd "$1"

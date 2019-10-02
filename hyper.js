@@ -15,8 +15,8 @@ module.exports = {
 		copyOnSelect: true,
 		defaultSSHApp: true,
   },
-  plugins: ['hyper-search', 'hypercwd', 'hypertonia', 'hyperline'],
-  localPlugins: [],
+  plugins: ['hyper-search', 'hypercwd', 'hyperline'],
+  localPlugins: ['/spaceship/mono/packages/hypertonia/'],
   keymaps: {},
   hyperline: {
     plugins: [

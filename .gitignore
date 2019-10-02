@@ -13,6 +13,7 @@
 !General/*.sh
 !Programs
 !Programs/*.sh
+Programs/node-complete.sh
 
 !hyper.js
 !com.googlecode.iterm2.plist

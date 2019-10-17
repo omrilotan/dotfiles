@@ -5,7 +5,6 @@
   "private": true,
   "dependencies": {
     "@cloudflare/wrangler": "latest",
-    "npm-check": "latest",
-    "snyk": "latest"
+    "npm-check": "latest"
   }
 }

@@ -3,6 +3,7 @@
 !.gitignore
 !.gitattributes
 !.editorconfig
+!.nvmrc
 !README.md
 !dotfiles.gif
 !LICENSE
@@ -13,7 +14,6 @@
 !General/*.sh
 !Programs
 !Programs/*.sh
-Programs/node-complete.sh
 
 !hyper.js
 !com.googlecode.iterm2.plist

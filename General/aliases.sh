@@ -7,6 +7,7 @@ alias paste=pbpaste
 alias date='gdate' # brew install coreutils
 alias ts='date +%Y-%m-%d\ %H:%M'
 alias dir='du -sh * | sort -h'
+alias disks='df -h'
 
 # Dotfiles
 alias dotfiles='edit ~/dotfiles'

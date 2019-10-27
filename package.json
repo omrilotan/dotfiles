@@ -5,6 +5,8 @@
   "private": true,
   "dependencies": {
     "@cloudflare/wrangler": "latest",
+    "gitmoji-cli": "latest",
+    "npm": "latest",
     "npm-check": "latest"
   }
 }

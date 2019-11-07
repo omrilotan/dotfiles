@@ -14,6 +14,9 @@
 !General/*.sh
 !Programs
 !Programs/*.sh
+!.scripts
+!.scripts/*.js
+!.scripts/*.sh
 
 !hyper.js
 !com.googlecode.iterm2.plist

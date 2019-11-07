@@ -3,8 +3,13 @@
   "version": "0.0.0",
   "description": "Install global node modules here to be available across all node versions",
   "private": true,
+  "scripts": {
+    "clean": "rm -rf /usr/local/lib/node_modules",
+    "update": "./.scripts/update.js"
+  },
   "dependencies": {
     "@cloudflare/wrangler": "latest",
+    "async-execute": "latest",
     "gitmoji-cli": "latest",
     "npm": "latest",
     "npm-check": "latest",

@@ -78,3 +78,16 @@ function google {
 function youtube {
 	open "https://www.youtube.com/results?search_query=$*"
 }
+
+# Example: dock node:lts-alpine [evil-node]
+function dock {
+	local image=$1
+	local name=$2
+	: ${name:="$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 32 | head -n 1)"}
+	echo "Gonna run $image as $name"
+	docker run -it -d --name $name $image
+	docker exec -it $name bin/sh
+	echo "Stopping $image, don't close this process"
+	docker stop $name
+	docker rm $name
+}

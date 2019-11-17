@@ -91,3 +91,18 @@ function dock {
 	docker stop $name
 	docker rm $name
 }
+
+function cd? {
+	local q=$@
+	if [ -z $q ]; then
+		echo "Please add a query"
+		return 0
+	fi
+	set -- $(ls | grep $q)
+	if [ ! -z $1 ]; then
+		cd $1
+		return 0
+	fi
+
+	echo "Did not find $q"
+}

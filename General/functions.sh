@@ -15,6 +15,7 @@ function work {
 	name
 }
 
+# npm i && notify finished install on $(basename $(pwd))
 function notify {
 	osascript -e "display notification \"${*}\" with title \"You asked my to remind you:\""
 }
@@ -41,10 +42,6 @@ function mkfile {
 	mkdir -p $( dirname "$1") && touch "$1"
 }
 
-function headers {
-	curl $1 -svo /dev/null 2>&1 | grep ^\<
-}
-
 function envsize {
 	expr length "$(env)"
 	if [ "$?" != "0" ]; then
@@ -52,31 +49,6 @@ function envsize {
 		wc -c < /tmp/__env__
 		rm /tmp/__env__
 	fi
-}
-
-function path_dedup {
-	START=$(($(date +%s%N)/1000000))
-	echo "Looking for PATH duplicates"
-	nvm use default
-	local PREV_LENGTH=$(expr length "$PATH")
-	export PATH=$(node -p "Array.from(new Set(process.env.PATH.split(':'))).join(':')")
-	local CURR_LENGTH=$(expr length "$PATH")
-	if [[ $PREV_LENGTH == $CURR_LENGTH ]]; then
-		message="PATH has no duplicates ($CURR_LENGTH characters)"
-	else
-		message="Compacted PATH variable from $PREV_LENGTH to $CURR_LENGTH characters"
-	fi
-	END=$(($(date +%s%N)/1000000))
-	DIFF=$(echo "$END - $START" | bc)
-	echo -e "\\r${CHECK_MARK} $message \033[0;94m(${DIFF})\033[0m  "
-}
-
-function google {
-	'open "https://www.google.com/?q=$*"'
-}
-
-function youtube {
-	open "https://www.youtube.com/results?search_query=$*"
 }
 
 # Example: dock node:lts-alpine [evil-node]
@@ -98,11 +70,10 @@ function cd? {
 		echo "Please add a query"
 		return 0
 	fi
-	set -- $(ls | grep $q)
+	set -- $(ls -a | grep $q --fixed-strings)
 	if [ ! -z $1 ]; then
 		cd $1
 		return 0
 	fi
-
 	echo "Did not find $q"
 }

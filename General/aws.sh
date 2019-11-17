@@ -1,4 +1,4 @@
-aws_mfa() {
+function aws_mfa {
 	local profile=$1
 	local token=$2
 

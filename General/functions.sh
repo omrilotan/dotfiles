@@ -76,6 +76,7 @@ function cd? {
 	fi
 	set -- $(ls -a | grep $q --fixed-strings)
 	if [ ! -z $1 ]; then
+		echo "Change Directory to $1"
 		cd $1
 		return 0
 	fi

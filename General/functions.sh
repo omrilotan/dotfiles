@@ -64,6 +64,10 @@ function dock {
 	docker rm $name
 }
 
+function nodeocker {
+	dock node:lts-slim nodeslim
+}
+
 function cd? {
 	local q=$@
 	if [ -z $q ]; then

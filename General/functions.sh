@@ -55,7 +55,7 @@ function envsize {
 function dock {
 	local image=$1
 	local name=$2
-	: ${name:="$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 32 | head -n 1)"}
+	: ${name:="dock${RANDOM}"}
 	echo "Gonna run $image as $name"
 	docker run -it -d --name $name $image
 	docker exec -it $name bin/sh

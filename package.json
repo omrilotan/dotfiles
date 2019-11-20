@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf /usr/local/lib/node_modules",
-    "update": "./.scripts/update.js"
+    "update": "./.scripts/update.js",
+    "postinstall": "./.scripts/latest.js"
   },
   "dependencies": {
     "@cloudflare/wrangler": "latest",

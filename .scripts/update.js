@@ -4,15 +4,14 @@ const exec = require('async-execute');
 const { dependencies } = require('../package.json')
 update(...Object.keys(dependencies));
 
-async function update(pkg, ...packages) {
-	while (pkg) {
-		console.log(`Update ${pkg}`);
+async function update(...packages) {
+	const list = packages.map(
+		pkg => [pkg, 'latest'].join('@')
+	).join(' ');
 
-		await exec(
-			`npm i ${pkg}@latest --no-save`,
-			{ pipe: true }
-		);
-
-		pkg = packages.shift();
-	}
+	console.log(`Update ${packages.join(', ')}`);
+	await exec(
+		`npm i ${list} --no-save`,
+		{ pipe: true }
+	);
 };

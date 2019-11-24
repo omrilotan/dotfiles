@@ -82,3 +82,7 @@ function cd? {
 	fi
 	echo "Did not find $q"
 }
+
+function bins {
+	ls -l ~/dotfiles/node_modules/.bin | awk '{print $9}'
+}

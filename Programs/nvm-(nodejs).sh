@@ -2,9 +2,17 @@
 # sudo rm -rf /usr/local/{lib/node{,/.npm,_modules},bin,share/man}/{npm*,node*,man1/node*}
 # brew uninstall --force node
 
+function load_nvm {
+	source "$HOME/.nvm/nvm.sh"
+	if [[ ! -f "$HOME/dotfiles/.npm_completion.sh" ]]; then
+		npm completion >> ~/dotfiles/.npm_completion.sh
+	fi
+	source ~/dotfiles/.npm_completion.sh
+}
+
 if [ -f ".nvmrc" ]; then
 	# Load NVM if needed
-	source "$HOME/.nvm/nvm.sh"
+	load_nvm
 else
 	# Set up idem potent NVM loaders
 	nodecommands=(nvm npm npx node)
@@ -16,8 +24,7 @@ else
 		unset -f nvm_load
 		if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
 			START=$(date +%s)
-			echo "Loading NVM"
-			source "$HOME/.nvm/nvm.sh"
+			load_nvm
 			END=$(date +%s)
 			DIFF=$(echo "($END - $START)" | bc)
 			echo -e "\033[0;94mLoading NVM took ${DIFF} seconds\033[0m"

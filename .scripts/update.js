@@ -1,8 +1,25 @@
 #!/usr/bin/env node
 
+/**
+ * npm run update
+ * npm run update -- npm snyk other
+ */
+
 const exec = require('async-execute');
-const { dependencies } = require('../package.json')
-update(...Object.keys(dependencies));
+const { dependencies } = require('../package.json');
+
+(function () {
+	const { argv: [, , ...args] } = process;
+	const installed = Object.keys(dependencies);
+
+	const packages = args.length
+		? intersect(args, installed)
+		: installed
+	;
+
+	update(...packages);
+})();
+
 
 async function update(...packages) {
 	const list = packages.map(
@@ -15,3 +32,15 @@ async function update(...packages) {
 		{ pipe: true }
 	);
 };
+
+function intersect(...arrays) {
+	let result = arrays.shift();
+
+	while (arrays.length) {
+		result = result.filter(
+			[].includes.bind(arrays.shift())
+		)
+	}
+
+	return result;
+}

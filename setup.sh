@@ -5,13 +5,14 @@ q=()
 q+=('("Bash profile" .bash_profile ~/.bash_profile)')
 q+=('("Bash profile" .bashrc ~/.bashrc)')
 q+=('("Git config" .gitconfig ~/.gitconfig)')
+q+=('("VIM config" .vimrc ~/.vimrc)')
 q+=('("Hyper config" .hyper.js ~/.hyper.js)')
 q+=('("Hosts file" hosts /etc/hosts)')
 q+=('("Acceptable shells" shells /etc/shells)')
 q+=('("Hyper config" .npmrc ~/.npmrc)')
-q+=('("Sublime Settings" sublime-settings "~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings")')
+q+=('("Sublime Settings" sublime-settings "~/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings")')
 q+=('("Terminalizer config" .terminalizer.yml ~/.terminalizer/config.yml)')
-q+=('("missing file" missing ~/.missing)')
+q+=('("Missing file" missing ~/.missing)')
 
 for set in "${q[@]}";
 do

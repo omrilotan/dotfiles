@@ -10,6 +10,8 @@
 !setup.sh
 !init.sh
 !pudding.sh
+!Functions
+!Functions/*.sh
 !General
 !General/*.sh
 !Programs

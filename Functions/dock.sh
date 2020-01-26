@@ -35,13 +35,6 @@ $ dock
 		done
 	fi
 
-	if [ $image == "--help" ]; then
-		echo "dock <IMAGE> [<NAME>]"
-		echo "Example: dock node"
-		echo "Example: dock node:lts-alpine evil-node"
-		return
-	fi
-
 	local name=$2
 	: ${name:="dock${RANDOM}"}
 	echo "Gonna run $image as $name"

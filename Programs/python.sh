@@ -1,1 +1,1 @@
-eval "$(pyenv init -)"
+which pyenv && eval "$(pyenv init -)"

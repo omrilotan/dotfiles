@@ -7,6 +7,7 @@ alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/co
 alias github='/Applications/GitHub\ Desktop.app/Contents/Resources/app/static/github.sh open $(pwd)'
 
 alias editor=sub
+export EDITOR=sub
 
 function work {
 	editor .

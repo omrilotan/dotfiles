@@ -3,7 +3,7 @@ cd() {
 	dir=$@
 	: ${dir:=~}
 
-	builtin cd $dir
+	builtin cd "$dir"
 	if [ -f ".nvmrc" ]; then
 		nvm use
 	fi
@@ -21,5 +21,5 @@ c() {
 	dir=$@
 	: ${dir:=~}
 
-	builtin cd $dir
+	builtin cd "$dir"
 }

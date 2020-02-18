@@ -2,18 +2,15 @@
 # sudo rm -rf /usr/local/{lib/node{,/.npm,_modules},bin,share/man}/{npm*,node*,man1/node*}
 # brew uninstall --force node
 
+export NVM_DIR="$HOME/.nvm"
+
 function load_nvm {
-	source "$HOME/.nvm/nvm.sh"
+	source "$NVM_DIR/nvm.sh"
 	if [[ ! -f "$HOME/dotfiles/.npm_completion.sh" ]]; then
 		npm completion >> ~/dotfiles/.npm_completion.sh
 	fi
 	source ~/dotfiles/.npm_completion.sh
 }
-
-export NVM_DIR="$HOME/.nvm"
-# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-# [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 
 if [ -f ".nvmrc" ]; then
 	# Load NVM if needed
@@ -27,7 +24,7 @@ else
 			eval "unset -f ${nodecommand}"
 		done
 		unset -f nvm_load
-		if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+		if [[ -s "$NVM_DIR/nvm.sh" ]]; then
 			START=$(date +%s)
 			load_nvm
 			END=$(date +%s)
@@ -46,5 +43,5 @@ fi
 export NPMRC=$(cat ~/.npmrc) # For docker images etc.
 
 # Include globally installed NPM packages from default version on NVM
-NVMBIN="$HOME/.nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"
+NVMBIN="$NVM_DIR/versions/node/$(cat $NVM_DIR/alias/default)/bin"
 export PATH="$PATH:$NVMBIN"

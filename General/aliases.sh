@@ -10,7 +10,7 @@ alias dir='du -sh * | sort -h'
 alias disks='df -h'
 
 # Dotfiles
-alias dotfiles='edit ~/dotfiles'
+alias dotfiles='editor ~/dotfiles'
 
 # Mac
 alias noidle='pmset noidle &'

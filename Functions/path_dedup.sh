@@ -14,9 +14,3 @@ function path_dedup {
 	DIFF=$(echo "$END - $START" | bc)
 	echo -e "\\r${CHECK_MARK} $message \033[0;94m(${DIFF})\033[0m  "
 }
-
-# Personal bin files (symlinkes from ~/dotfiles/.bin)
-export PATH="$PATH:$HOME/bin"
-
-# Global node modules (across node versions)
-export PATH="$PATH:$HOME/dotfiles/node_modules/.bin/"

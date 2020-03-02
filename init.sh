@@ -15,6 +15,12 @@ export PATH="$PATH:/usr/bin"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/opt/X11/bin"
 
+# Personal bin files (symlinkes from ~/dotfiles/.bin)
+export PATH="$PATH:$HOME/bin"
+
+# Global node modules (across node versions)
+export PATH="$PATH:$HOME/dotfiles/node_modules/.bin/"
+
 directories=($(ls -d ~/dotfiles/*/ | grep -v node_modules))
 
 # `brew install coreutils` - milliseconds support in date is required. Using gnu date (gdate)

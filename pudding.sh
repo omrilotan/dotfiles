@@ -15,6 +15,10 @@ cd() {
 			rvm use $(cat .ruby-version)
 		fi
 	fi
+
+	if [ -f ".python-version" ]; then
+		pyenv local $(pyenv local)
+	fi
 }
 
 c() {

@@ -42,3 +42,5 @@ if [[ -z $(cat ~/.bash_profile | grep "dotfiles/init.sh") ]]; then
 	echo "source ~/dotfiles/init.sh" >> .bash_profile
 	echo "Added call to init to bash_profile"
 fi
+
+git config --global core.excludesfile ~/dotfiles/.gitignoreGlobal

@@ -1,6 +1,7 @@
 .*
 *
 !.gitignore
+!.gitignoreGlobal
 !.gitattributes
 !.editorconfig
 !.nvmrc

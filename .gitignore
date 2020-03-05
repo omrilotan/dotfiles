@@ -20,6 +20,4 @@
 !.scripts
 !.scripts/*.js
 !.scripts/*.sh
-
-!hyper.js
 !package.json

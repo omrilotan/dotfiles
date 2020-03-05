@@ -33,7 +33,6 @@ cd dotfiles
 >   - .bin
 >   - hosts (/etc/hosts)
 >   - shells (/etc/shells)
-> - `hyper.js` (if exists) has been symlinked **out**.
 
 ### Requirements
 `brew install coreutils` - milliseconds support in date is required. I'm gnu date (gdate)

@@ -22,5 +22,4 @@
 !.scripts/*.sh
 
 !hyper.js
-!com.googlecode.iterm2.plist
 !package.json

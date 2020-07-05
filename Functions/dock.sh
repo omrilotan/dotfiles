@@ -38,7 +38,7 @@ $ dock
 	local name=$2
 	: ${name:="dock${RANDOM}"}
 	echo "Gonna run $image as $name"
-	docker run -it -d --name $name $image
+	docker run --privileged -it -d --name $name $image
 	docker exec -it $name /bin/sh
 	echo "Stopping $image, don't close this process"
 	docker stop $name

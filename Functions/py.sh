@@ -27,6 +27,26 @@ function py {
 			pycodestyle . --max-line-length=119 --exclude venv
 			return
 			;;
+
+		"freeze")
+			pip freeze > requirements.txt
+			return
+			;;
+
+		"list")
+			echo $(pyenv versions --bare --skip-aliases)
+			return
+			;;
+		"hop")
+			versions=$(pyenv versions --bare --skip-aliases)
+			select version in $versions;
+			do
+				pyenv local $version
+				python -V
+				break
+			done
+			return
+			;;
 	esac
 
 	echo "Usage:
@@ -37,6 +57,9 @@ Possible arguments:
 ⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺
 venv) Set up virtual env in \"venv\" directory
 test) Run pytest
-style) Run pycodestyle"
+style) Run pycodestyle
+freeze) save requirements
+list) list available versions
+hop) change versions using pyenv"
 }
 

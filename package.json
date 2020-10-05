@@ -10,13 +10,8 @@
   },
   "dependencies": {
     "@cloudflare/wrangler": "latest",
-    "@percy/agent": "latest",
-    "async-execute": "latest",
-    "gitmoji-cli": "latest",
     "ngrok": "latest",
     "npm": "latest",
-    "npm-check": "latest",
-    "snyk": "latest",
-    "terminalizer": "latest"
+    "npm-check": "latest"
   }
 }

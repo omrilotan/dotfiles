@@ -15,9 +15,10 @@ function load_nvm {
 if [ -f ".nvmrc" ]; then
 	# Load NVM if needed
 	load_nvm
+	unset -f load_nvm
 else
 	# Set up idem potent NVM loaders
-	nodecommands=(nvm npm npx node)
+	nodecommands=(nvm npm npx node fssh)
 	function nvm_load {
 		# Unset all node command decorators
 		for nodecommand in "${nodecommands[@]}"; do
@@ -27,6 +28,7 @@ else
 		if [[ -s "$NVM_DIR/nvm.sh" ]]; then
 			START=$(date +%s)
 			load_nvm
+			unset -f load_nvm
 			END=$(date +%s)
 			DIFF=$(echo "($END - $START)" | bc)
 			echo -e "\033[0;94mLoading NVM took ${DIFF} seconds\033[0m"

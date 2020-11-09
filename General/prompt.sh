@@ -32,7 +32,10 @@ GIT_PS1_HIDE_IF_PWD_IGNORED=false
 # yellow bold: \[\033[33;1m\]
 
 emojis=(⚡️ 🚀 🏄 🍒 🍎 ✨ 🔥 🐛 🐌 👉 😶 🐛 ☕️ 📍 🏮 🎈 🛎 💡 ⚽️ 🍓 🥚 🍪 🍩 🍺 🍻 🌕 🌍 🌞 🌝 🍀 🦎 🦋 🦖 🦕 🧟‍♂️ 👉 👽 🤡 👾 🤙 ✊ 🤘 🧛 ⛄️ 🌼 🍄 ☘️ 🐲 ☁️ 🍬 💎 🎀 💬 💭 🔔)
-RANDOM=$$$(date +%s)
-face=${emojis[$RANDOM % ${#emojis[@]} ]}
+function term {
+	RANDOM=$$$(date +%s)
+	face=${emojis[$RANDOM % ${#emojis[@]} ]}
 
-export PS1='\[\033[31m\]\D{%H:%M}\[\033[33m\] \[\033[32m\]\w\[\033[33m\]$(__git_ps1)\[\033[00m\] ${face} '
+	export PS1='\[\033[31m\]\D{%H:%M}\[\033[33m\] \[\033[32m\]\w\[\033[33m\]$(__git_ps1)\[\033[00m\] ${face} '
+}
+term

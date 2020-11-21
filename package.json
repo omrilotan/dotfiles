@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@cloudflare/wrangler": "latest",
+    "@nestjs/cli": "latest",
     "ngrok": "latest",
     "npm": "latest",
     "npm-check": "latest"

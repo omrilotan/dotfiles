@@ -6,11 +6,11 @@ alias atom='/Applications/Atom.app/Contents/Resources/app/atom.sh'
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias github='/Applications/GitHub\ Desktop.app/Contents/Resources/app/static/github.sh open $(pwd)'
 
-alias editor=sub
+alias edit=sub
 export EDITOR=sub
 
 function work {
-	editor .
+	edit .
 	git pull origin master
 	name
 }

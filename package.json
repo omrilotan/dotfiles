@@ -13,6 +13,8 @@
     "@nestjs/cli": "latest",
     "ngrok": "latest",
     "npm": "latest",
-    "npm-check": "latest"
+    "npm-check": "latest",
+    "npq": "latest",
+    "typescript": "latest"
   }
 }

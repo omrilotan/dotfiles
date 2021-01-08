@@ -33,8 +33,12 @@ GIT_PS1_HIDE_IF_PWD_IGNORED=false
 
 emojis=(⚡️ 🚀 🏄 🍒 🍎 ✨ 🔥 🐛 🐌 👉 😶 🐛 ☕️ 📍 🏮 🎈 🛎 💡 ⚽️ 🍓 🥚 🍪 🍩 🍺 🍻 🌕 🌍 🌞 🌝 🍀 🦎 🦋 🦖 🦕 🧟‍♂️ 👉 👽 🤡 👾 🤙 ✊ 🤘 🧛 ⛄️ 🌼 🍄 ☘️ 🐲 ☁️ 🍬 💎 🎀 💬 💭 🔔)
 function term {
-	RANDOM=$$$(date +%s)
-	face=${emojis[$RANDOM % ${#emojis[@]} ]}
+	if [ -z "$1" ]; then
+		RANDOM=$$$(date +%s)
+		face=${emojis[$RANDOM % ${#emojis[@]} ]}
+	else
+		face="$1"
+	fi
 
 	export PS1='\[\033[31m\]\D{%H:%M}\[\033[33m\] \[\033[32m\]\w\[\033[33m\]$(__git_ps1)\[\033[00m\] ${face} '
 }

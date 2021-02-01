@@ -19,35 +19,33 @@ $ search anything you want
 		read  -p 'Search for: ' term
 	fi
 
-	local engines=()
-	engines+=('google (default)')
-	engines+=('youtube')
-	engines+=('youtube-music')
-	engines+=('github')
-	engines+=('npm')
-	select engine in "${engines[@]}";
-	do
-		case "$engine" in
-			youtube)
-				open "https://www.youtube.com/results?search_query=$*";
-				break;
-				;;
-			youtube-music)
-				open "https://music.youtube.com/search?q=$*";
-				break;
-				;;
-			github)
-				open "https://github.com/search?q=$*";
-				break;
-				;;
-			npm)
-				open "https://www.npmjs.com/search?q=$*";
-				break;
-				;;
-			*)
-				open "https://www.google.com/?q=$*";
-				break;
-				;;
-		esac
-	done
+	echo """Select search engine:
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+1) google (default)
+2) youtube
+3) youtube-music
+4) github
+5) npm
+	"""
+	read engine
+	case "$engine" in
+		1|"")
+			open "https://www.google.com/search?q=$*";
+			;;
+		2|youtube)
+			open "https://www.youtube.com/results?search_query=$*";
+			;;
+		3|youtube-music)
+			open "https://music.youtube.com/search?q=$*";
+			;;
+		4|github)
+			open "https://github.com/search?q=$*";
+			;;
+		5|npm)
+			open "https://www.npmjs.com/search?q=$*";
+			;;
+		*)
+			open "https://www.google.com/search?q=$*";
+			;;
+	esac
 }

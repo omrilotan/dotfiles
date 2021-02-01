@@ -11,14 +11,15 @@ cd() {
 
 	if [ -f ".ruby-version" ]; then
 		echo "Setup ruby env"
-		rubyver=$(rbenv local)
-		rbenv local ${rubyver#ruby-}
 
-		# if [ -f ".ruby-gemset" ]; then
-		# 	rvm use "$(cat .ruby-version)@$(cat .ruby-gemset)"
-		# else
-		# 	rvm use $(cat .ruby-version)
-		# fi
+		# rubyver=$(rbenv local)
+		# rbenv local ${rubyver#ruby-}
+
+		if [ -f ".ruby-gemset" ]; then
+			rvm use "$(cat .ruby-version)@$(cat .ruby-gemset)"
+		else
+			rvm use $(cat .ruby-version)
+		fi
 	fi
 
 	if [ -f ".python-version" ]; then

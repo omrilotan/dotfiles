@@ -15,6 +15,11 @@ $ dock
 		return
 	fi
 
+	if [ -z "$(pgrep -f docker)" ]; then
+		echo "docker is not running"
+		return
+	fi
+
 	local image=$1
 	if [ -z "$image" ]; then
 		echo "→ You did not specify an image, You can pick one of these:"
@@ -36,10 +41,13 @@ $ dock
 	fi
 
 	local config_files=()
-	config_files+=('.gitconfig')
-	config_files+=('.ssh')
+	config_files+=('.aws')
 	config_files+=('.gemrc')
+	config_files+=('.gitconfig')
+	config_files+=('.gradle')
+	config_files+=('.jfrog')
 	config_files+=('.npmrc')
+	config_files+=('.ssh')
 
 	local name=$2
 	: ${name:="dock${RANDOM}"}

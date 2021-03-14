@@ -8,6 +8,10 @@ function es {
 			cat ~/dotfiles/.templates/espanso.yml > $(espanso path config)/default.yml
 			return
 			;;
+		"list")
+			espanso match list
+			return
+			;;
 	esac
 	echo "Usage:
 ⎺⎺⎺⎺⎺⎺
@@ -16,8 +20,13 @@ $ es <argument>
 Possible arguments:
 ⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺
 edit) Edit espanso template
-update) Update espanso file to match the template"
+update) Update espanso file to match the template
+list) List available matches
 
+And espanso cmd has more options:
+⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺"
+
+	echo -e "$(espanso cmd --help)"
 }
 
 es update

@@ -1,5 +1,6 @@
 .DS_Store
 .vscode
+.cache
 .idea
 __pycache__
 .notes

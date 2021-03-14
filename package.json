@@ -15,6 +15,7 @@
     "npm": "latest",
     "npm-check": "latest",
     "npq": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "yarn": "latest"
   }
 }

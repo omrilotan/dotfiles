@@ -4,3 +4,4 @@ if [[ $(basename $SHELL) == "bash" ]]; then
 fi
 
 export HISTTIMEFORMAT="%F %T "
+export BASH_SILENCE_DEPRECATION_WARNING=1

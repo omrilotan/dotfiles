@@ -26,7 +26,8 @@ $ dock
 		local images=()
 		images+=('ubuntu')
 		images+=('node:lts-alpine')
-		images+=('ruby:latest')
+		images+=('python:alpine')
+		images+=('ruby:alpine')
 		images+=('Quit')
 		select image in "${images[@]}";
 		do

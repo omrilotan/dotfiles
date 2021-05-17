@@ -5,15 +5,19 @@ function es {
 			return
 			;;
 		"update")
+			# cat ~/dotfiles/.templates/espanso.yml > ~/Library/Preferences/espanso/default.yml
 			cat ~/dotfiles/.templates/espanso.yml > $(espanso path config)/default.yml
+			if [[ -f ~/dotfiles/.templates/.espanso.yml ]]; then
+			    cat ~/dotfiles/.templates/.espanso.yml >> $(espanso path config)/default.yml
+			fi
 			return
 			;;
 		"list")
 			espanso match list
 			return
 			;;
-	esac
-	echo "Usage:
+		"help")
+			echo "Usage:
 ⎺⎺⎺⎺⎺⎺
 $ es <argument>
 
@@ -25,8 +29,9 @@ list) List available matches
 
 And espanso cmd has more options:
 ⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺⎺"
-
-	echo -e "$(espanso cmd --help)"
+			echo -e "$(espanso cmd --help)"
+	esac
+		eval "espanso $@"
 }
 
 es update

@@ -20,4 +20,7 @@
 !.scripts
 !.scripts/*.js
 !.scripts/*.sh
+!.templates
+!.templates/*
+.templates/.*
 !package.json

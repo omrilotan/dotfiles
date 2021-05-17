@@ -1,0 +1,157 @@
+# espanso configuration file
+# @see https://espanso.org/docs/
+#
+# This file is being automatically copied to "/Users/$(whoami)/Library/Preferences/espanso/default.yml"
+#
+# espanso install wtc # install package
+enable_passive: false
+passive_key: META
+matches:
+  # numeronyms
+  - { trigger: ":a11y", replace: "accessibility", propagate_case: true }
+  - { trigger: ":g11n", replace: "globalisation", propagate_case: true }
+  - { trigger: ":i14y", replace: "interoperability", propagate_case: true }
+  - { trigger: ":i18n", replace: "internationalization", propagate_case: true }
+  - { trigger: ":k8s", replace: "Kubernetes" }
+  - { trigger: ":l10n", replace: "localisation", propagate_case: true }
+  - { trigger: ":m12n", replace: "modularisation", propagate_case: true }
+  - { trigger: ":o11y", replace: "observability", propagate_case: true }
+  - { trigger: ":p13n", replace: "personalization", propagate_case: true }
+  - { trigger: ":p8s", replace: "Prometheus" }
+  - { trigger: ":s5n", replace: "shorten", propagate_case: true }
+  - { trigger: ":tr8n", replace: "translation", propagate_case: true }
+  - { trigger: ":v11n", replace: "versification", propagate_case: true }
+  - { trigger: ":v8n", replace: "validation", propagate_case: true }
+  # Work abbr
+  - { trigger: "abbr", replace: "abbreviation", word: true, propagate_case: true }
+  - { trigger: "afaik", replace: "as far as I know", word: true, propagate_case: true }
+  - { trigger: "afk", replace: "away from keyboard", word: true, propagate_case: true }
+  - { trigger: "appr", replace: "approximately", word: true, propagate_case: true }
+  - { trigger: "appx", replace: "appendix", word: true, propagate_case: true }
+  - { trigger: "asap", replace: "as soon as possible", word: true, propagate_case: true }
+  - { trigger: "atm", replace: "at the moment", word: true, propagate_case: true }
+  - { trigger: "brb", replace: "be right back", word: true, propagate_case: true }
+  - { trigger: "btw", replace: "by the way", word: true, propagate_case: true }
+  - { trigger: "cil", replace: "comments in line", word: true, propagate_case: true }
+  - { trigger: "fyi", replace: "for your information", word: true, propagate_case: true }
+  - { trigger: "ic", replace: "I see", word: true, propagate_case: true }
+  - { trigger: "idk", replace: "I don't know", word: true, propagate_case: true }
+  - { trigger: "imho", replace: "in my honest opinion", word: true, propagate_case: true }
+  - { trigger: "imo", replace: "in my opinion", word: true, propagate_case: true }
+  - { trigger: "lgtm", replace: "looks good to me", word: true, propagate_case: true }
+  - { trigger: "lmk", replace: "let me know", word: true, propagate_case: true }
+  - { trigger: "np", replace: "no problem", word: true, propagate_case: true }
+  # - { trigger: "nvm", replace: "never mind", word: true, propagate_case: true } Can't use because NVM is a software I use
+  - { trigger: "obv", replace: "obviously", word: true, propagate_case: true }
+  - { trigger: "ofc", replace: "of course", word: true, propagate_case: true }
+  - { trigger: "omw", replace: "on my way", word: true, propagate_case: true }
+  - { trigger: "ootb", replace: "out of the box", word: true, propagate_case: true }
+  - { trigger: "tbh", replace: "to be honest", word: true, propagate_case: true }
+  - { trigger: "tnx", replace: "thank you", word: true, propagate_case: true }
+  - { trigger: "wdyt", replace: "what do you think", word: true, propagate_case: true }
+  # Henglish
+  - { trigger: "טקד", replace: "yes", word: true }
+  # espanso-fractions
+  - { trigger: "1/4", replace: "¼", word: true }
+  - { trigger: "1/2", replace: "½", word: true }
+  - { trigger: "3/4", replace: "¾", word: true }
+  - { trigger: "1/7", replace: "⅐", word: true }
+  - { trigger: "1/9", replace: "⅑", word: true }
+  - { trigger: "1/10", replace: "⅒", word: true }
+  - { trigger: "1/3", replace: "⅓", word: true }
+  - { trigger: "2/3", replace: "⅔", word: true }
+  - { trigger: "1/5", replace: "⅕", word: true }
+  - { trigger: "2/5", replace: "⅖", word: true }
+  - { trigger: "3/5", replace: "⅗", word: true }
+  - { trigger: "4/5", replace: "⅘", word: true }
+  - { trigger: "1/6", replace: "⅙", word: true }
+  - { trigger: "5/6", replace: "⅚", word: true }
+  - { trigger: "1/8", replace: "⅛", word: true }
+  - { trigger: "3/8", replace: "⅜", word: true }
+  - { trigger: "5/8", replace: "⅝", word: true }
+  - { trigger: "7/8", replace: "⅞", word: true }
+  # Emoji
+  - { trigger: ":check:", replace: "✔︎" }
+  - { trigger: ":x:", replace: "✘" }
+  - { trigger: ":star:", replace: "⭐️" }
+  - { trigger: ":coffee:", replace: "☕️" }
+  - { trigger: ":smile:", replace: "😀" }
+  - { trigger: ":lint:", replace: "👕" }
+  - { trigger: ":box:", replace: "📦" }
+  - { trigger: ":dot", replace: "·" }
+  - { trigger: ":em", replace: " " }
+  - { trigger: ":nbsp", replace: " " }
+  - { trigger: ":darr", replace: "↓" }
+  - { trigger: ":rarr", replace: "→" }
+  - { trigger: ":larr", replace: "←" }
+  - { trigger: ":uarr", replace: "↑" }
+  - { trigger: ":->", replace: "→" }
+  - { trigger: ":<-", replace: "←" }
+  - { trigger: ":=>", replace: "⇒" }
+  - { trigger: ":<=", replace: "⇐" }
+  - { trigger: ":...", replace: "…" }
+  - { trigger: ":ellip", replace: "…" }
+  - { trigger: ":no", replace: "№" }
+  - { trigger: ":pound", replace: "£" }
+  - { trigger: ":euro", replace: "€" }
+  - { trigger: ":nis", replace: "₪" }
+  - { trigger: ":tm", replace: "™" }
+  - { trigger: "(c)", replace: "©" }
+  - { trigger: "(r)", replace: "®" }
+  # git
+  - trigger: ":branch"
+    replace: "git rev-parse --abbrev-ref HEAD"
+  # tpyo
+  - triggers: [ "comit", "commmit" ]
+    replace: "commit"
+    word: true
+  - triggers: [ "bim", "vi" ]
+    replace: "vim"
+    word: true
+  # Sysadmin
+  - trigger: ":du"
+    replace: "sudo du -sh * | sort -h | tail"
+  - trigger: ":port"
+    replace: "lsof -i -P | grep -i listen"
+  - trigger: ":statsd"
+    replace: "sudo tcpdump udp -u port 8125 -A"
+  - trigger: ":ports"
+    replace: "lsof -i -P | grep -i listen"
+  - trigger: ":ip"
+    replace: "ipconfig getifaddr en0"
+  # Templates
+  - trigger: ":tst"
+    replace: "describe('', () => {\ntest('', () => {$|$});\n});"
+  - trigger: ":license"
+    replace: "This is free and unencumbered software released into the public domain.\n\nAnyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.\n\nIn jurisdictions that recognize copyright laws, the author or authors of this software dedicate any and all copyright interest in the software to the public domain. We make this dedication for the benefit of the public at large and to the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in perpetuity of all present and future rights to this software under copyright law.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\nFor more information, please refer to <http://unlicense.org/>"
+  - trigger: ":err"
+    replace: "(() => {script = document.createElement('script');\nscript.textContent = `\npromise = () => new Promise((resolve, reject) => reject(new Error('Oh No!')));\npromise();\n\nerror = new Error(\"Something must have gone terribly wrong. ${Date.now()}\");\nerror.details = { package: 'my-package-name' };\nthrow error;\n`;\ndocument.body.appendChild(script);\n})();\n"
+  # Generic
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
+  - trigger: ":ts"
+    replace: "{{value}}"
+    vars:
+      - name: value
+        type: date
+        params:
+          format: "+%Y-%m-%d\ %H:%M"
+  - trigger: ":sdate"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "date -s '%Y-%m-%d %H:%M:%S'"
+  - trigger: ":ip"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "curl ifconfig.me"

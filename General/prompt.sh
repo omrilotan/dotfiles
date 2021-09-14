@@ -32,7 +32,7 @@ GIT_PS1_HIDE_IF_PWD_IGNORED=false
 # yellow bold: \[\033[33;1m\]
 
 emojis=(⚡️ 🚀 🏄 🍒 🍎 ✨ 🔥 🐛 🐌 👉 😶 🐛 ☕️ 📍 🏮 🎈 🛎 💡 ⚽️ 🍓 🥚 🍪 🍩 🍺 🍻 🌕 🌍 🌞 🌝 🍀 🦎 🦋 🦖 🦕 🧟‍♂️ 👉 👽 🤡 👾 🤙 ✊ 🤘 🧛 ⛄️ 🌼 🍄 ☘️ 🐲 ☁️ 🍬 💎 🎀 💬 💭 🔔)
-function term {
+function icon {
 	if [ -z "$1" ]; then
 		RANDOM=$$$(date +%s)
 		face=${emojis[$RANDOM % ${#emojis[@]} ]}
@@ -40,6 +40,10 @@ function term {
 		face="$1"
 	fi
 
-	export PS1='\[\033[31m\]\D{%H:%M}\[\033[33m\] \[\033[32m\]\w\[\033[33m\]$(__git_ps1)\[\033[00m\] ${face} '
+	export PS1='\[\033[31m\]\D{%H:%M}\[\033[33m\] \[\033[32m\]\W\[\033[33m\]$(__git_ps1)\[\033[00m\] ${face} '
 }
-term
+icon
+
+# if [ $ITERM_SESSION_ID ]; then
+#   export PROMPT_COMMAND='icon; ':"$PROMPT_COMMAND";
+# fi

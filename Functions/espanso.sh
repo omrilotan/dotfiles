@@ -33,5 +33,3 @@ And espanso cmd has more options:
 	esac
 		eval "espanso $@"
 }
-
-es update

@@ -40,17 +40,22 @@ matches:
   - { trigger: "imo", replace: "in my opinion", word: true, propagate_case: true }
   - { trigger: "lgtm", replace: "looks good to me", word: true, propagate_case: true }
   - { trigger: "lmk", replace: "let me know", word: true, propagate_case: true }
+  - { trigger: "misc", replace: "miscellaneous", word: true, propagate_case: true }
   - { trigger: "np", replace: "no problem", word: true, propagate_case: true }
-  # - { trigger: "nvm", replace: "never mind", word: true, propagate_case: true } Can't use because NVM is a software I use
+  # - { trigger: "nvm", replace: "never mind", word: true, propagate_case: true } Can't use because "nvm" is a software I use
   - { trigger: "obv", replace: "obviously", word: true, propagate_case: true }
   - { trigger: "ofc", replace: "of course", word: true, propagate_case: true }
   - { trigger: "omw", replace: "on my way", word: true, propagate_case: true }
   - { trigger: "ootb", replace: "out of the box", word: true, propagate_case: true }
   - { trigger: "tbh", replace: "to be honest", word: true, propagate_case: true }
   - { trigger: "tnx", replace: "thank you", word: true, propagate_case: true }
+  - { trigger: "ty", replace: "thank you", word: true, propagate_case: true }
   - { trigger: "wdyt", replace: "what do you think", word: true, propagate_case: true }
   # Henglish
   - { trigger: "טקד", replace: "yes", word: true }
+  - { trigger: "fi", replace: "כן", word: true }
+  - { trigger: "מם", replace: "no", word: true }
+  - { trigger: "kt", replace: "לא", word: true }
   # espanso-fractions
   - { trigger: "1/4", replace: "¼", word: true }
   - { trigger: "1/2", replace: "½", word: true }
@@ -70,17 +75,30 @@ matches:
   - { trigger: "3/8", replace: "⅜", word: true }
   - { trigger: "5/8", replace: "⅝", word: true }
   - { trigger: "7/8", replace: "⅞", word: true }
+  # Measurements
+  - { trigger: ":ms", replace: "milliseconds" }
+  - { trigger: ":mm", replace: "millimetres" }
+  - { trigger: ":cm", replace: "centimetres" }
   # Emoji
-  - { trigger: ":check:", replace: "✔︎" }
-  - { trigger: ":x:", replace: "✘" }
-  - { trigger: ":star:", replace: "⭐️" }
-  - { trigger: ":coffee:", replace: "☕️" }
-  - { trigger: ":smile:", replace: "😀" }
-  - { trigger: ":lint:", replace: "👕" }
-  - { trigger: ":box:", replace: "📦" }
+  - { trigger: ":check", replace: "✔︎" }
+  - { trigger: ":x", replace: "✘" }
+  - { trigger: ":star", replace: "⭐️" }
+  - { trigger: ":coffee", replace: "☕️" }
+  - { trigger: ":smile", replace: "😀" }
+  - { trigger: ":lol", replace: "😆" }
+  - { trigger: ":lint", replace: "👕" }
+  - { trigger: ":doc", replace: "📘" }
+  - { trigger: ":box", replace: "📦" }
+  - { trigger: ":police", replace: "👮" }
+  - { trigger: ":ninja", replace: "🥷" }
+  - { trigger: ":bulb", replace: "💡" }
+  - { trigger: ":heart", replace: "❤️" }
+  - { trigger: ":ok:", replace: "👌" }
+  - { trigger: ":okay:", replace: "👌" }
   - { trigger: ":dot", replace: "·" }
   - { trigger: ":em", replace: " " }
   - { trigger: ":nbsp", replace: " " }
+  - { trigger: ":dash", replace: "—" }
   - { trigger: ":darr", replace: "↓" }
   - { trigger: ":rarr", replace: "→" }
   - { trigger: ":larr", replace: "←" }
@@ -93,6 +111,7 @@ matches:
   - { trigger: ":ellip", replace: "…" }
   - { trigger: ":no", replace: "№" }
   - { trigger: ":pound", replace: "£" }
+  - { trigger: ":gbp", replace: "£" }
   - { trigger: ":euro", replace: "€" }
   - { trigger: ":nis", replace: "₪" }
   - { trigger: ":tm", replace: "™" }
@@ -115,17 +134,26 @@ matches:
     replace: "lsof -i -P | grep -i listen"
   - trigger: ":statsd"
     replace: "sudo tcpdump udp -u port 8125 -A"
+  - trigger: ":graphite"
+    replace: "sudo tcpdump -u port 2003 -A"
   - trigger: ":ports"
     replace: "lsof -i -P | grep -i listen"
-  - trigger: ":ip"
+  - trigger: ":addr"
     replace: "ipconfig getifaddr en0"
+  # kubectl
+  - trigger: ":ktail"
+    replace: "kubectl logs --follow"
   # Templates
   - trigger: ":tst"
     replace: "describe('', () => {\ntest('', () => {$|$});\n});"
   - trigger: ":license"
     replace: "This is free and unencumbered software released into the public domain.\n\nAnyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.\n\nIn jurisdictions that recognize copyright laws, the author or authors of this software dedicate any and all copyright interest in the software to the public domain. We make this dedication for the benefit of the public at large and to the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in perpetuity of all present and future rights to this software under copyright law.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\nFor more information, please refer to <http://unlicense.org/>"
+  - trigger: ":editorconfig"
+    replace: "root = true\n\n[*]\nend_of_line = lf\ninsert_final_newline = true\ntrim_trailing_whitespace = true\ncharset = utf-8\nindent_style = tab\ntab_width = 2\n\n[*.{yml,json}]\nindent_size = 2\nindent_style = space\n"
   - trigger: ":err"
     replace: "(() => {script = document.createElement('script');\nscript.textContent = `\npromise = () => new Promise((resolve, reject) => reject(new Error('Oh No!')));\npromise();\n\nerror = new Error(\"Something must have gone terribly wrong. ${Date.now()}\");\nerror.details = { package: 'my-package-name' };\nthrow error;\n`;\ndocument.body.appendChild(script);\n})();\n"
+  - trigger: ":box"
+    replace: "┌─┬─┐\n│ │ │\n├─┼─┤\n│ │ │\n└─┴─┘"
   # Generic
   - trigger: ":date"
     replace: "{{mydate}}"
@@ -140,7 +168,14 @@ matches:
       - name: value
         type: date
         params:
-          format: "+%Y-%m-%d\ %H:%M"
+          format: "%Y-%m-%d\ %H:%M"
+  - trigger: ":time"
+    replace: "{{value}}"
+    vars:
+      - name: value
+        type: date
+        params:
+          format: "%Y-%m-%d\ %H:%M:%S"
   - trigger: ":sdate"
     replace: "{{mydate}}"
     vars:

@@ -47,6 +47,7 @@ matches:
   - { trigger: "ofc", replace: "of course", word: true, propagate_case: true }
   - { trigger: "omw", replace: "on my way", word: true, propagate_case: true }
   - { trigger: "ootb", replace: "out of the box", word: true, propagate_case: true }
+  - { trigger: "rn", replace: "right now", word: true, propagate_case: true }
   - { trigger: "tbh", replace: "to be honest", word: true, propagate_case: true }
   - { trigger: "tnx", replace: "thank you", word: true, propagate_case: true }
   - { trigger: "ty", replace: "thank you", word: true, propagate_case: true }
@@ -82,6 +83,7 @@ matches:
   # Emoji
   - { trigger: ":check", replace: "✔︎" }
   - { trigger: ":x", replace: "✘" }
+  - { trigger: ":by", replace: "×" }
   - { trigger: ":star", replace: "⭐️" }
   - { trigger: ":coffee", replace: "☕️" }
   - { trigger: ":smile", replace: "😀" }
@@ -95,10 +97,13 @@ matches:
   - { trigger: ":heart", replace: "❤️" }
   - { trigger: ":ok:", replace: "👌" }
   - { trigger: ":okay:", replace: "👌" }
+  - { trigger: ":shrug:", replace: "🤷" }
   - { trigger: ":dot", replace: "·" }
   - { trigger: ":em", replace: " " }
   - { trigger: ":nbsp", replace: " " }
+  - { trigger: ":  :", replace: " " }
   - { trigger: ":dash", replace: "—" }
+  - { trigger: ":--:", replace: "—" }
   - { trigger: ":darr", replace: "↓" }
   - { trigger: ":rarr", replace: "→" }
   - { trigger: ":larr", replace: "←" }
@@ -113,6 +118,7 @@ matches:
   - { trigger: ":pound", replace: "£" }
   - { trigger: ":gbp", replace: "£" }
   - { trigger: ":euro", replace: "€" }
+  - { trigger: ":cent", replace: "¢" }
   - { trigger: ":nis", replace: "₪" }
   - { trigger: ":tm", replace: "™" }
   - { trigger: "(c)", replace: "©" }
@@ -190,3 +196,10 @@ matches:
         type: shell
         params:
           cmd: "curl ifconfig.me"
+  - trigger: ":pwd"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "openssl rand -base64 18"

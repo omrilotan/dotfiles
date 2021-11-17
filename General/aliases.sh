@@ -17,3 +17,10 @@ alias noidle='pmset noidle &'
 function idle {
 	ps aux | grep noidle | awk '{print $2}' | while read in; do echo "$in"; done;
 }
+function slp {
+	if [ "$1" == "-f" ] || [ "$1" == "--force" ]; then
+		osascript -e 'tell application "System Events" to sleep'
+	else
+		osascript -e 'tell application "Finder" to sleep'
+	fi
+}

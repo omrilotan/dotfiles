@@ -9,11 +9,15 @@ function py {
 				echo "Use project python version $(pyenv local)"
 				pyenv local $(pyenv local)
 				echo "Set up virtualenv"
-				virtualenv -p $(which python) venv
+				# virtualenv -p $(which python) venv
+				/Library/Frameworks/Python.framework/Versions/Current/bin/virtualenv -p $(which python) venv
+
 				echo "Activate virtualenv"
 				source venv/bin/activate
-				echo "Install requirements"
-				pip install -r requirements.txt
+				if [ -f "requirements.txt" ]; then
+					echo "Install requirements"
+					pip install -r requirements.txt
+				fi
 			fi
 			return
 			;;

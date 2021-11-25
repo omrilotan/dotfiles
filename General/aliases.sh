@@ -24,3 +24,6 @@ function slp {
 		osascript -e 'tell application "Finder" to sleep'
 	fi
 }
+function arm {
+	arch -arm64 bash
+}

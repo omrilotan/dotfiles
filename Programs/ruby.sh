@@ -4,7 +4,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # eval "$(rbenv init -)"
 
-# # Remove all locally installed gems
-# function rmgem {
-# 	gem list | cut -d" " -f1 | xargs gem uninstall -aIx
-# }
+# Remove all locally installed gems
+function rmgem {
+	gem list | cut -d" " -f1 | xargs gem uninstall -aIx
+}

@@ -14,9 +14,11 @@ export PATH="$PATH:/sbin"
 export PATH="$PATH:/usr/bin"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/opt/X11/bin"
+export PATH="$PATH:/usr/local/opt/openssl/bin"
 
 # Personal bin files (symlinkes from ~/dotfiles/.bin)
 export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:/opt/homebrew/bin/"
 
 # Global node modules (across node versions)
 export PATH="$PATH:$HOME/dotfiles/node_modules/.bin/"
@@ -25,6 +27,7 @@ directories=($(ls -d ~/dotfiles/*/ | grep -v node_modules))
 
 # `brew install coreutils` - milliseconds support in date is required. Using gnu date (gdate)
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 
 if [ ! -f "/usr/local/opt/coreutils/libexec/gnubin/date" ]; then
 	echo "Requires gnu date to work"
@@ -37,9 +40,9 @@ for directory in "${directories[@]}"; do
 	for f in ${directory}*.sh; do
 		base="$(basename $f .sh)"
 		echo -n "$LOADING $base"
-		START=$(($(date +%s%N)/1000000))
+		START=$(($(gdate +%s%N)/1000000))
 		source $f
-		END=$(($(date +%s%N)/1000000))
+		END=$(($(gdate +%s%N)/1000000))
 		DIFF=$(echo "$END - $START" | bc)
 		echo -e "\\r${CHECK_MARK} $base \033[0;94m(${DIFF})\033[0m  "
 	done
@@ -47,9 +50,9 @@ done
 
 echo -e "\033[0;33m🍮  ${POST_INIT}\033[0m"
 echo -n "$LOADING $POST_INIT"
-START=$(($(date +%s%N)/1000000))
+START=$(($(gdate +%s%N)/1000000))
 source ~/dotfiles/${POST_INIT}.sh
-END=$(($(date +%s%N)/1000000))
+END=$(($(gdate +%s%N)/1000000))
 DIFF=$(echo "$END - $START" | bc)
 echo -e "\\r${CHECK_MARK} ${POST_INIT} \033[0;94m(${DIFF})\033[0m  "
 

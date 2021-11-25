@@ -11,7 +11,7 @@
   "dependencies": {
     "@cloudflare/wrangler": "latest",
     "@nestjs/cli": "latest",
-    "http-server": "^0.12.3",
+    "http-server": "latest",
     "ngrok": "latest",
     "npm": "latest",
     "npm-check": "latest",

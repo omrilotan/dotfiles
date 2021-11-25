@@ -5,10 +5,9 @@ function es {
 			return
 			;;
 		"update")
-			# cat ~/dotfiles/.templates/espanso.yml > ~/Library/Preferences/espanso/default.yml
-			cat ~/dotfiles/.templates/espanso.yml > $(espanso path config)/default.yml
+			cat ~/dotfiles/.templates/espanso.yml > $(espanso path config)/config/default.yml
 			if [[ -f ~/dotfiles/.templates/.espanso.yml ]]; then
-			    cat ~/dotfiles/.templates/.espanso.yml >> $(espanso path config)/default.yml
+			    cat ~/dotfiles/.templates/.espanso.yml >> $(espanso path config)/config/default.yml
 			fi
 			return
 			;;

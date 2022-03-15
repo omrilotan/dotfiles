@@ -18,7 +18,7 @@ if [ -f ".nvmrc" ]; then
 	unset -f load_nvm
 else
 	# Set up idem potent NVM loaders
-	nodecommands=(nvm npm npx node fssh)
+	nodecommands=(nvm npm npx node)
 	function nvm_load {
 		# Unset all node command decorators
 		for nodecommand in "${nodecommands[@]}"; do

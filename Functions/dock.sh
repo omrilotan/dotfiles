@@ -27,7 +27,7 @@ $ dock
 		images+=('ubuntu')
 		images+=('node:lts-alpine')
 		images+=('python:alpine')
-		images+=('ruby:alpine')
+		images+=('ruby:alpine') # ruby:latest
 		images+=('Quit')
 		select image in "${images[@]}";
 		do
@@ -53,7 +53,10 @@ $ dock
 	local name=$2
 	: ${name:="dock${RANDOM}"}
 	echo "→ Run $image as $name"
-	docker run --privileged -it -d --name $name $image
+	echo "docker run --privileged -it -d --rm --volume $PWD:/app --name $name $image"
+	docker run --privileged -it -d --rm --volume $PWD:/app --name $name $image
+	# docker run --privileged -it -d --rm --volume $PWD:/app --name $name $image
+	# docker run --privileged -it -d $PWD:/app --name $name $image
 	for config_file in "${config_files[@]}"; do
 		docker cp ~/$config_file $name:/root/$config_file
 	done

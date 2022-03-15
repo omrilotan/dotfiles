@@ -6,13 +6,24 @@ function es {
 			;;
 		"update")
 			cat ~/dotfiles/.templates/espanso.yml > $(espanso path config)/config/default.yml
+			echo "matches:" > $(espanso path config)/match/base.yml
+			cat ~/dotfiles/.templates/espanso-matches.yml >> $(espanso path config)/match/base.yml
 			if [[ -f ~/dotfiles/.templates/.espanso.yml ]]; then
-			    cat ~/dotfiles/.templates/.espanso.yml >> $(espanso path config)/config/default.yml
+			    cat ~/dotfiles/.templates/.espanso.yml >> $(espanso path config)/match/base.yml
 			fi
+
 			return
 			;;
 		"list")
 			espanso match list
+			return
+			;;
+		"dir")
+			cd "$(espanso path config)"
+			return
+			;;
+		"sub")
+			sub "$(espanso path config)"
 			return
 			;;
 		"help")

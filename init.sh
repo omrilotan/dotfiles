@@ -4,21 +4,20 @@ POST_INIT="pudding"
 
 # reset path
 export PATH=""
-export PATH="$PATH:/usr/local/"
-export PATH="$PATH:/usr/local/bin"
-export PATH="$PATH:/usr/local/sbin"
-export PATH="$PATH:/opt/local/bin/"
-export PATH="$PATH:/opt/local/sbin"
 export PATH="$PATH:/bin"
 export PATH="$PATH:/sbin"
 export PATH="$PATH:/usr/bin"
 export PATH="$PATH:/usr/sbin"
-export PATH="$PATH:/opt/X11/bin"
-export PATH="$PATH:/usr/local/opt/openssl/bin"
+export PATH="$PATH:/usr/local/"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:/usr/local/sbin"
+
+# Specific locations
+export PATH="$PATH:/usr/X11/bin"
+export PATH="$PATH:/opt/homebrew/bin/"
 
 # Personal bin files (symlinkes from ~/dotfiles/.bin)
 export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:/opt/homebrew/bin/"
 
 # Global node modules (across node versions)
 export PATH="$PATH:$HOME/dotfiles/node_modules/.bin/"
@@ -32,6 +31,8 @@ export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 if [ ! -f "/usr/local/opt/coreutils/libexec/gnubin/date" ]; then
 	echo "Requires gnu date to work"
 fi
+
+alias date=gdate
 
 STARTALL=$(date +%s)
 

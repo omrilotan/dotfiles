@@ -9,16 +9,18 @@
     "postinstall": "./.scripts/latest.js"
   },
   "dependencies": {
-    "@cloudflare/wrangler": "latest",
     "@nestjs/cli": "latest",
+    "async-execute": "latest",
     "committee": "latest",
     "http-server": "latest",
+    "localtunnel": "latest",
     "ngrok": "latest",
     "npm": "latest",
-    "npm-check": "latest",
     "npq": "latest",
     "typescript": "latest",
+    "unimported": "latest",
     "web-ext": "latest",
+    "wrangler": "latest",
     "yarn": "latest"
   }
 }

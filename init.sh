@@ -18,6 +18,7 @@ export PATH="$PATH:/opt/homebrew/bin/"
 
 # Personal bin files (symlinkes from ~/dotfiles/.bin)
 export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/dotfiles/.executables"
 
 # Global node modules (across node versions)
 export PATH="$PATH:$HOME/dotfiles/node_modules/.bin/"

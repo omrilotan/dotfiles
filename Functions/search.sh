@@ -39,7 +39,7 @@ $ search anything you want
 			open "https://music.youtube.com/search?q=$*";
 			;;
 		4|github)
-			open "https://github.com/search?q=$*";
+			open "https://cs.github.com/?q=$*";
 			;;
 		5|npm)
 			open "https://www.npmjs.com/search?q=$*";

@@ -9,8 +9,9 @@ function py {
 				echo "Use project python version $(pyenv local)"
 				pyenv local $(pyenv local)
 				echo "Set up virtualenv"
-				# virtualenv -p $(which python) venv
-				/Library/Frameworks/Python.framework/Versions/Current/bin/virtualenv -p $(which python) venv
+				virtualenv -p $(which python) venv
+				# eval "$(which python) -m pip install virtualenv"
+				# /Library/Frameworks/Python.framework/Versions/Current/bin/virtualenv -p $(which python) venv
 
 				echo "Activate virtualenv"
 				source venv/bin/activate

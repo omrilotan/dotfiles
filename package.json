@@ -20,6 +20,7 @@
     "typescript": "latest",
     "unimported": "latest",
     "web-ext": "latest",
+    "workbox-cli": "latest",
     "wrangler": "latest",
     "yarn": "latest"
   }

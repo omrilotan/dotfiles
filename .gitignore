@@ -4,6 +4,7 @@
 !.gitignoreGlobal
 !.gitattributes
 !.editorconfig
+!.executables
 !.nvmrc
 !README.md
 !dotfiles.gif

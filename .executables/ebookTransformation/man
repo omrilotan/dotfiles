@@ -1,0 +1,12 @@
+ebook transformation
+———————————
+
+Usage:
+	$ ebook "filename" --dry-run
+
+Argumets:
+	Arguments will be concatinates into file name suffix
+
+Options:
+	--help          -h    :    Print help
+	--dry-run       -d    :    Do not execute (will print unless quiet)

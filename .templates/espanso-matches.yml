@@ -95,6 +95,8 @@
   - { trigger: ":  :", replace: " " }
   - { trigger: ":dash", replace: "—" }
   - { trigger: ":--:", replace: "—" }
+  - { trigger: ":makaf", replace: "־" }
+  - { trigger: ":__", replace: "־" }
   - { trigger: ":darr", replace: "↓" }
   - { trigger: ":rarr", replace: "→" }
   - { trigger: ":larr", replace: "←" }
@@ -167,6 +169,8 @@
   # epub
   - trigger: ":rtl"
     replace: "page-progression-direction=\"rtl\""
+  - trigger: ":ebook"
+    replace: "( (class|dir|alt|title|style)=\"[^\"]*\"|</?span>|<p></p>)"
   # Generic
   - trigger: ":date"
     replace: "{{mydate}}"

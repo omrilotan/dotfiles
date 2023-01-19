@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+
+const template = (order, chapter, section) => `
+    <navPoint playOrder="${order}">
+      <navLabel>
+        <text>פרק ${chapter}</text>
+      </navLabel>
+      <content src="Text/Section${(section).toString().padStart(4, '0')}.xhtml"/>
+    </navPoint>`
+
+
+
+const pages = [8, 9, 10, 11, 12, 13, 14, 15, 16].map(
+	num => template(num + 2, num, num + 1)
+).join('')
+
+console.log(pages)

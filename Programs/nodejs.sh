@@ -10,6 +10,8 @@ function load_nvm {
 		npm completion >> ~/dotfiles/.npm_completion.sh
 	fi
 	source ~/dotfiles/.npm_completion.sh
+
+	# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 }
 
 if [ -f ".nvmrc" ]; then

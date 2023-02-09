@@ -171,6 +171,8 @@
     replace: "page-progression-direction=\"rtl\""
   - trigger: ":ebook"
     replace: "( (class|dir|alt|title|style)=\"[^\"]*\"|</?span>|<p></p>)"
+  - trigger: ":copy"
+    replace: "copy([...document.querySelectorAll('iframe')].pop().contentWindow.document.body.innerText)"
   # Generic
   - trigger: ":date"
     replace: "{{mydate}}"

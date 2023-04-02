@@ -181,6 +181,13 @@
         type: date
         params:
           format: "%Y-%m-%d"
+  - trigger: ":ddate"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%d/%m/%Y"
   - trigger: ":ts"
     replace: "{{value}}"
     vars:

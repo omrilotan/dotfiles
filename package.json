@@ -9,6 +9,7 @@
     "postinstall": "./.scripts/latest.js"
   },
   "dependencies": {
+    "@githubnext/github-copilot-cli": "latest",
     "@nestjs/cli": "latest",
     "async-execute": "latest",
     "committee": "latest",

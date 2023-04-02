@@ -49,7 +49,8 @@ async function start(
 	let index = Number(startFrom) - 1
 
 	for (const filename of files.filter(filename => pattern.test(filename)).sort()) {
-		const newName = [ [ name, digitise(++index) ].join(''), extension].filter(Boolean).join('.')
+		const ext = extension || (filename.includes(".") ? filename.split(".").pop() : undefined);
+		const newName = [ [ name, digitise(++index) ].join(''), ext].filter(Boolean).join('.')
 
 		if (await readFile(newName).catch(e => false)) {
 			console.log(`File already exists: "${newName}". Abort operation.`);

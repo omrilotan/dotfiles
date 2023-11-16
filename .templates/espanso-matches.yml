@@ -117,6 +117,7 @@
   - { trigger: ":deg", replace: "°" }
   - { trigger: "(c)", replace: "©" }
   - { trigger: "(r)", replace: "®" }
+  - { trigger: "cafe", replace: "café", propagate_case: true }
   # UK Keyboard quirks
   - triggers: [ ":hash", ":£" ]
     replace: "#"
@@ -202,6 +203,20 @@
         type: date
         params:
           format: "%Y-%m-%d\ %H:%M:%S"
+  - trigger: ":tunix"
+    replace: "{{value}}"
+    vars:
+      - name: value
+        type: date
+        params:
+          format: "%s"
+  - trigger: ":nano"
+    replace: "{{value}}"
+    vars:
+      - name: value
+        type: date
+        params:
+          format: "%s%N"
   - trigger: ":sdate"
     replace: "{{mydate}}"
     vars:

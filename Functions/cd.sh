@@ -25,3 +25,10 @@ $ cd? modules
 	fi
 	# echo "Did not find $q"
 }
+
+c() {
+	dir=$@
+	: ${dir:=~}
+
+	builtin cd "$dir" $@
+}

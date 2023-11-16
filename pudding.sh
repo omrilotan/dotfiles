@@ -1,7 +1,13 @@
 # 🍮 I come at the end of the meal
+
+
 cd() {
 	dir=$@
 	: ${dir:=~}
+
+  if [ -f "$1" ]; then
+    dir=$(dirname "$1")
+  fi
 
 	builtin cd "$dir"
 	if [ -f ".nvmrc" ]; then
@@ -29,11 +35,4 @@ cd() {
 		echo "Using python version $(cat .python-version)"
 		pyenv local $(pyenv local)
 	fi
-}
-
-c() {
-	dir=$@
-	: ${dir:=~}
-
-	builtin cd "$dir"
 }

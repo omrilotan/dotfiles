@@ -4,7 +4,7 @@ function cd? {
 cd?: Change to the first directory which contains the string you pass
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
-cd? directory_name
+cd? partial_directory_name
 
 > Examples:
 $ cd? modules
@@ -24,11 +24,4 @@ $ cd? modules
 		return 0
 	fi
 	# echo "Did not find $q"
-}
-
-c() {
-	dir=$@
-	: ${dir:=~}
-
-	builtin cd "$dir" $@
 }

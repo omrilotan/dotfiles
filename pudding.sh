@@ -1,15 +1,17 @@
 # 🍮 I come at the end of the meal
 
-
 cd() {
 	dir=$@
 	: ${dir:=~}
 
-  if [ -f "$1" ]; then
-    dir=$(dirname "$1")
-  fi
+	if [ -f "$1" ]; then
+		echo "Change to the directory containing $(basename "$1")"
+		dir=$(dirname "$1")
+	fi
 
-	builtin cd "$dir"
+	# Change directory
+	builtin cd "$dir" "${@:2}"
+
 	if [ -f ".nvmrc" ]; then
 		echo "Setup nodejs env"
 		nvm use

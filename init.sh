@@ -29,9 +29,7 @@ directories=($(ls -d ~/dotfiles/*/ | grep -v node_modules))
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 
-if [ ! -f "/usr/local/opt/coreutils/libexec/gnubin/date" ]; then
-	echo "Requires gnu date to work"
-fi
+command -v gdate >/dev/null 2>&1 || { echo >&2 "Requires gnu date (gdate) to work. Aborting"; exit 1; }
 
 alias date=gdate
 

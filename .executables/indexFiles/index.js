@@ -48,10 +48,8 @@ async function start(
 	const pattern = filter ? new RegExp(filter) : /^[^\.].*/
 	const { length } = (files.length + 1).toString();
 	const digitise = num => num.toString().padStart(length, '0')
-	let index = Number(startFrom) - 1
-
-	// let list = files.filter(filename => pattern.test(filename)) // .sort()
 	let list = files.filter(filename => pattern.test(filename)).sort()
+	let index = Number(startFrom) - 1
 
 	// // Sort files by date
 	// list = await Promise.all(list.map(async filename => {
@@ -60,11 +58,14 @@ async function start(
 	// }))
 	// list = list.sort((a, b) => a.ctime - b.ctime).map(({ filename }) => filename)
 
+	const enumeratedFiles = new Set(list.map((filename) => filename.replace(/[-_](\d+)\.(jpg|jpeg|png)$/, "")))
+
 	for (const filename of list) {
 		const ext = extension || (filename.includes(".") ? filename.split(".").pop() : undefined);
-		const newName = [ [ name, digitise(++index) ].join(''), ext].filter(Boolean).join('.')
-		// const newName = filename.replace(/^Dragon  1 A friend for Dragon-/, '').padStart(7, '0')
-
+		const newName = enumeratedFiles
+			? digitise(filename.replace(/(?:.*)[-_](\d+)\.(jpg|jpeg|png)$/, extension ? `$1.${extension}` : '$1.$2'))
+			: [ [ name, digitise(++index) ].join(''), ext].filter(Boolean).join('.')
+		;
 		if (await readFile(newName).catch(e => false)) {
 			console.log(`File already exists: "${newName}". Abort operation.`);
 			// process.exit(1);
@@ -72,8 +73,6 @@ async function start(
 			quiet || console.log([ filename, '→', newName ].join(' '))
 			dryRun || await rename(join(base, filename), join(base, newName));
 		}
-
 		// await wait(1000)
 	}
 }
-

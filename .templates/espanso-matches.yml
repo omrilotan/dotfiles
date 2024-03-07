@@ -118,12 +118,15 @@
   - { trigger: "(c)", replace: "©" }
   - { trigger: "(r)", replace: "®" }
   - { trigger: "cafe", replace: "café", propagate_case: true }
+  - { trigger: "quotes", replace: "“”" }
   # UK Keyboard quirks
   - triggers: [ ":hash", ":£" ]
     replace: "#"
   # git
   - trigger: ":branch"
     replace: "git rev-parse --abbrev-ref HEAD"
+  - tiger: ":seturl"
+    replace: "git remote set-url --push origin \"git@github.com:${git config user.name}/${basename `git rev-parse --show-toplevel`}.git\""
   # tpyo
   - triggers: [ "comit", "commmit" ]
     replace: "commit"

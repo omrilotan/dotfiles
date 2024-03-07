@@ -48,7 +48,7 @@ async function start(
 	const pattern = filter ? new RegExp(filter) : /^[^\.].*/
 	const { length } = (files.length + 1).toString();
 	const digitise = num => num.toString().padStart(length, '0')
-	let list = files.filter(filename => pattern.test(filename)).sort()
+	let list = files.filter(filename => pattern.test(filename)) // .sort()
 	let index = Number(startFrom) - 1
 
 	// // Sort files by date
@@ -58,14 +58,22 @@ async function start(
 	// }))
 	// list = list.sort((a, b) => a.ctime - b.ctime).map(({ filename }) => filename)
 
-	const enumeratedFiles = new Set(list.map((filename) => filename.replace(/[-_](\d+)\.(jpg|jpeg|png)$/, "")))
+	const filesAreEnumerated = new Set(list.map((filename) => filename.replace(/[-_](\d+)\.(jpg|jpeg|png)$/, ""))).size === 1;
+	const filesAreNumbers = list.every(filename => filename.match(/^\d+\.(jpg|jpeg|png)$/));
 
 	for (const filename of list) {
 		const ext = extension || (filename.includes(".") ? filename.split(".").pop() : undefined);
-		const newName = enumeratedFiles
-			? digitise(filename.replace(/(?:.*)[-_](\d+)\.(jpg|jpeg|png)$/, extension ? `$1.${extension}` : '$1.$2'))
-			: [ [ name, digitise(++index) ].join(''), ext].filter(Boolean).join('.')
-		;
+		let newName = filename;
+
+		if (filesAreNumbers) {
+			const [ strippedName, extension ] = filename.split('.');
+			newName = [digitise(strippedName), extension].join('.');
+		} else if (filesAreEnumerated) {
+			newName = digitise(filename.replace(/(?:.*)[-_](\d+)\.(jpg|jpeg|png)$/, extension ? `$1.${extension}` : '$1.$2'));
+		} else {
+			newName = [ [ name, digitise(++index) ].join(''), ext].filter(Boolean).join('.');
+		}
+
 		if (await readFile(newName).catch(e => false)) {
 			console.log(`File already exists: "${newName}". Abort operation.`);
 			// process.exit(1);

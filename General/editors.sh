@@ -7,6 +7,7 @@ alias vscode='/Applications/Visual\ Studio\ Code\ -\ Insiders.app/Contents/Resou
 alias github='/Applications/GitHub\ Desktop.app/Contents/Resources/app/static/github.sh open $(pwd)$@'
 
 function code {
+	local original=$@
 	local q=${@%/}
 	if [ -z $q ]; then
 		vscode $@
@@ -17,13 +18,13 @@ function code {
 		vscode $1
 		return 0
 	fi
+	vscode $original
 }
 
-alias edit=code
-export EDITOR=sub
+alias edit='code'
 
 function work {
-	edit .
+	code .
 	git pull origin master
 	name
 }

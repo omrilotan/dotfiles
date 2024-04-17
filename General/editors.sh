@@ -13,6 +13,10 @@ function code {
 		vscode $@
 		return 0
 	fi
+	if [ -d $q ]; then
+		vscode $q
+		return 0
+	fi
 	set -- $(ls -a | grep $q --fixed-strings)
 	if [ ! -z $1 ]; then
 		vscode $1

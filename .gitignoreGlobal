@@ -5,4 +5,5 @@
 __pycache__
 .notes
 .hidden
+.hidden.*
 vendor/bundle/

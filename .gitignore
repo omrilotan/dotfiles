@@ -5,6 +5,7 @@
 !.gitattributes
 !.editorconfig
 !.executables
+!.executables/*
 !.nvmrc
 !README.md
 !dotfiles.gif
@@ -25,3 +26,7 @@
 !.templates/*
 .templates/.*
 !package.json
+
+*.DS_Store
+*_dev
+*_prod

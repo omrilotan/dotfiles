@@ -2,7 +2,6 @@
 
 This is running with Bash on a Mac
 
-
 ## This repository's structure
 
 `dotfiles` directory holds all subsequent settings. This helps visibility.
@@ -16,6 +15,7 @@ Each entry is measured to create visibility of startup cost.
 <img src="./dotfiles.gif" style="width:480px;">
 
 ## Installation
+
 ```sh
 cd ~
 git clone <REPO>
@@ -24,6 +24,7 @@ cd dotfiles
 ```
 
 > #### What just happened?
+>
 > - Everything is under `~/dotfiles` directory.
 > - The call to `~/dotfiles/init.sh` has been added to `.bash_profile` if it isn't already there.
 > - symlinked files:
@@ -35,4 +36,5 @@ cd dotfiles
 >   - shells (/etc/shells)
 
 ### Requirements
+
 `brew install coreutils` - milliseconds support in date is required. I'm gnu date (gdate)

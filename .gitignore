@@ -3,6 +3,7 @@
 !.gitignore
 !.gitignoreGlobal
 !.gitattributes
+!.prettierignore
 !.editorconfig
 !.executables
 !.executables/*

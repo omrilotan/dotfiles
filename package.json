@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf /usr/local/lib/node_modules",
+    "format": "prettier --write .",
     "update": "./.scripts/update.js",
     "postinstall": "./.scripts/latest.js"
   },
@@ -24,5 +25,8 @@
     "workbox-cli": "latest",
     "wrangler": "latest",
     "yarn": "latest"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
   }
 }

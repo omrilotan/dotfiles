@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 verify(18, 4);
-import('./ebookTransformation/index.js');
+import("./ebookTransformation/index.js");
 
 function verify(desiredMajor, desiredMinor = 0) {
 	const version = process.versions.node;
-	const [ major, minor, ...rest ] = version.split('.');
+	const [major, minor, ...rest] = version.split(".");
 	const message = `Run using node version ${desiredMajor}.${desiredMinor} or higher. (now running ${version}).`;
 
 	if (Number(major) < desiredMajor || Number(minor) < desiredMinor) {

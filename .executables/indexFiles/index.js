@@ -10,7 +10,7 @@ const options = {
 	'help': { short: 'h', type: 'boolean', multiple: false },
 	'dry-run': { short: 'd', type: 'boolean', multiple: false },
 	'filter': { short: 'f', type: 'string', multiple: false },
-	'prefix': { short: 'p', type: 'boolean', multiple: false },
+	'prefix': { short: 'p', type: 'string', multiple: false },
 	'extension': { short: 'e', type: 'string', multiple: false },
 	'ext': { type: 'string', multiple: false },
 	'quiet': { short: 'q', type: 'boolean', multiple: false },
@@ -32,7 +32,7 @@ async function start(
 		extension,
 		filter,
 		help,
-		prefix = false,
+		prefix = '',
 		quiet = false,
 		startFrom = '1',
 }
@@ -63,15 +63,15 @@ async function start(
 
 	for (const filename of list) {
 		const ext = extension || (filename.includes(".") ? filename.split(".").pop() : undefined);
-		let newName = filename;
+		let newName = prefix + filename;
 
 		if (filesAreNumbers) {
 			const [ strippedName, extension ] = filename.split('.');
-			newName = [digitise(strippedName), extension].join('.');
+			newName = prefix + [digitise(strippedName), extension].join('.');
 		} else if (filesAreEnumerated) {
-			newName = digitise(filename.replace(/(?:.*)[-_](\d+)\.(jpg|jpeg|png)$/, extension ? `$1.${extension}` : '$1.$2'));
+			newName = prefix + digitise(filename.replace(/(?:.*)[-_](\d+)\.(jpg|jpeg|png)$/, extension ? `$1.${extension}` : '$1.$2'));
 		} else {
-			newName = [ [ name, digitise(++index) ].join(''), ext].filter(Boolean).join('.');
+			newName = prefix + [ [ name, digitise(++index) ].join(''), ext].filter(Boolean).join('.');
 		}
 
 		if (await readFile(newName).catch(e => false)) {

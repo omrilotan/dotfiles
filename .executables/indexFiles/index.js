@@ -60,16 +60,22 @@ async function start(
 
 	const filesAreEnumerated = new Set(list.map((filename) => filename.replace(/[-_](\d+)\.(jpg|jpeg|png)$/, ""))).size === 1;
 	const filesAreNumbers = list.every(filename => filename.match(/^\d+\.(jpg|jpeg|png)$/));
+	const filesArePrefixEnumerated = list.every(filename => filename.match(/^\d+[_-]/));
 
 	for (const filename of list) {
 		const ext = extension || (filename.includes(".") ? filename.split(".").pop() : undefined);
 		let newName = prefix + filename;
 
 		if (filesAreNumbers) {
-			const [ strippedName, extension ] = filename.split('.');
-			newName = prefix + [digitise(strippedName), extension].join('.');
+			const [ strippedName ] = filename.split('.');
+			newName = prefix + [digitise(strippedName), ext].join('.');
 		} else if (filesAreEnumerated) {
-			newName = prefix + digitise(filename.replace(/(?:.*)[-_](\d+)\.(jpg|jpeg|png)$/, extension ? `$1.${extension}` : '$1.$2'));
+			newName = prefix + digitise(filename.replace(/(?:.*)[-_](\d+)\.(jpg|jpeg|png)$/, ext ? `$1.${ext}` : '$1.$2'));
+		} else if (filesArePrefixEnumerated) {
+			const number = filename.match(/^\d+/)[0];
+			const extention = filename.match(/\.(jpg|jpeg|png)$/)[0];
+			// strips filename.replace(/^\d+/, '')
+			newName = prefix + [digitise(number), ext].join('.');
 		} else {
 			newName = prefix + [ [ name, digitise(++index) ].join(''), ext].filter(Boolean).join('.');
 		}

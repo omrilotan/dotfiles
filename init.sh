@@ -29,11 +29,10 @@ directories=($(ls -d ~/dotfiles/*/ | grep -v node_modules))
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 
-command -v gdate >/dev/null 2>&1 || { echo >&2 "Requires gnu date (gdate) to work. Aborting"; exit 1; }
+command -v gdate >/dev/null 2>&1 || { echo >&2 "Requires gnu date (gdate) to work. Aborting. Run 'brew install coreutils'"; exit 1; }
+# alias date=gdate
 
-alias date=gdate
-
-STARTALL=$(date +%s)
+STARTALL=$(gdate +%s)
 
 for directory in "${directories[@]}"; do
 	echo -e "\033[0;33m${directory##*dotfiles/}\033[0m"
@@ -49,6 +48,7 @@ for directory in "${directories[@]}"; do
 done
 
 echo -e "\033[0;33m🍮  ${POST_INIT}\033[0m"
+echo "\n"
 echo -n "$LOADING $POST_INIT"
 START=$(($(gdate +%s%N)/1000000))
 source ~/dotfiles/${POST_INIT}.sh
@@ -56,7 +56,7 @@ END=$(($(gdate +%s%N)/1000000))
 DIFF=$(echo "$END - $START" | bc)
 echo -e "\\r${CHECK_MARK} ${POST_INIT} \033[0;94m(${DIFF})\033[0m  "
 
-ENDALL=$(date +%s)
+ENDALL=$(gdate +%s)
 DIFFALL=$(echo "($ENDALL - $STARTALL)" | bc)
 echo -e "\033[0;94mEverything took ${DIFFALL} seconds\033[0m"
 

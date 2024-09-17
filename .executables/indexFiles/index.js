@@ -15,6 +15,7 @@ const options = {
 	'ext': { type: 'string', multiple: false },
 	'quiet': { short: 'q', type: 'boolean', multiple: false },
 	'start-from': { short: 's', type: 'string', multiple: false },
+	'force': { short: 'f', type: 'boolean', multiple: false },
 };
 
 const {
@@ -31,6 +32,7 @@ async function start(
 		dryRun = false,
 		extension,
 		filter,
+		force = false,
 		help,
 		prefix = '',
 		quiet = false,
@@ -66,7 +68,9 @@ async function start(
 		const ext = extension || (filename.includes(".") ? filename.split(".").pop() : undefined);
 		let newName = prefix + filename;
 
-		if (filesAreNumbers) {
+		if (force) {
+			newName = prefix + [ [ name, digitise(++index) ].join(''), ext].filter(Boolean).join('.');
+		} else if (filesAreNumbers) {
 			const [ strippedName ] = filename.split('.');
 			newName = prefix + [digitise(strippedName), ext].join('.');
 		} else if (filesAreEnumerated) {

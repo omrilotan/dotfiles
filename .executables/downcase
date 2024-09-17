@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+start();
+
+async function start() {
+	const { verify } = await import("./lib/verify/index.js");
+	verify(18, 4);
+	import("./downcase-script/index.js");
+}

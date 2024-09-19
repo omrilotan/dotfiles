@@ -10,7 +10,7 @@ const options = {
 	'help': { short: 'h', type: 'boolean', multiple: false },
 	'dry-run': { short: 'd', type: 'boolean', multiple: false },
 	'filter': { short: 'f', type: 'string', multiple: false },
-	'prefix': { short: 'p', type: 'string', multiple: false },
+	'prefix': { short: 'p', type: 'boolean', multiple: false },
 	'extension': { short: 'e', type: 'string', multiple: false },
 	'ext': { type: 'string', multiple: false },
 	'quiet': { short: 'q', type: 'boolean', multiple: false },
@@ -34,7 +34,7 @@ async function start(
 		filter,
 		force = false,
 		help,
-		prefix = '',
+		prefix = false,
 		quiet = false,
 		startFrom = '1',
 }
@@ -60,28 +60,37 @@ async function start(
 	// }))
 	// list = list.sort((a, b) => a.ctime - b.ctime).map(({ filename }) => filename)
 
-	const filesAreEnumerated = new Set(list.map((filename) => filename.replace(/[-_](\d+)\.(jpg|jpeg|png)$/, ""))).size === 1;
+	const filesAreEnumerated = new Set(list.map((filename) => filename.replace(/[-_\s](\d+)\.(jpg|jpeg|png)$/, ""))).size === 1;
 	const filesAreNumbers = list.every(filename => filename.match(/^\d+\.(jpg|jpeg|png)$/));
 	const filesArePrefixEnumerated = list.every(filename => filename.match(/^\d+[_-]/));
 
 	for (const filename of list) {
 		const ext = extension || (filename.includes(".") ? filename.split(".").pop() : undefined);
-		let newName = prefix + filename;
+		let newName = name + filename;
+
+		const conposeFilename = (filename, ext) => [
+			[prefix ? name : "", filename, prefix ? "" : name].join(''),
+			ext
+		].filter(Boolean).join('.');
 
 		if (force) {
-			newName = prefix + [ [ name, digitise(++index) ].join(''), ext].filter(Boolean).join('.');
+			newName = conposeFilename(digitise(++index), ext);
 		} else if (filesAreNumbers) {
 			const [ strippedName ] = filename.split('.');
-			newName = prefix + [digitise(strippedName), ext].join('.');
+			newName = conposeFilenamedigitise(strippedName, ext);
 		} else if (filesAreEnumerated) {
-			newName = prefix + digitise(filename.replace(/(?:.*)[-_](\d+)\.(jpg|jpeg|png)$/, ext ? `$1.${ext}` : '$1.$2'));
+			newName = filename.match(
+				/[-_\s](\d+)\.(?:jpg|jpeg|png)$/,
+				// new RegExp(`[-_\s](\\d+)\\.${ext}$`),
+					// /(?:.*)[-_](\d+)\.(?:jpg|jpeg|png)$/,
+			)[1];
+			newName = conposeFilename(digitise(newName), ext);
 		} else if (filesArePrefixEnumerated) {
 			const number = filename.match(/^\d+/)[0];
-			const extention = filename.match(/\.(jpg|jpeg|png)$/)[0];
 			// strips filename.replace(/^\d+/, '')
-			newName = prefix + [digitise(number), ext].join('.');
+			newName = conposeFilenamedigitise(digitise(number), ext);
 		} else {
-			newName = prefix + [ [ name, digitise(++index) ].join(''), ext].filter(Boolean).join('.');
+			newName = conposeFilenamedigitise(digitise(++index), ext);
 		}
 
 		if (await readFile(newName).catch(e => false)) {

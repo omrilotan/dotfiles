@@ -7,11 +7,4 @@ Usage:
 Argumets:
 	Arguments will be concatinates into file name suffix
 
-Options:
-	--help          -h    :    Print help
-	--dry-run       -d    :    Do not execute (will print unless quiet)
-	--filter        -f    :    Filter filenames to apply (regular expression)
-	--prefix        -p    :    Use string as prefix instead of suffix
-	--quiet         -q    :    Do not print to terminal
-	--start-from    -s    :    Start with this number
-	--extension     -e    :    Use this string as extension
+For full options, see `index-files --help`

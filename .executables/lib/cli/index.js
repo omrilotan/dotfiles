@@ -6,7 +6,7 @@ export function cli(options) {
 	const {
 		values,
 		positionals
-	} = parseArgs({ args, options, allowPositionals: true, strict: false });
+	} = parseArgs({ args, options, allowPositionals: true, strict: true });
 
 	return { values, positionals };
 }

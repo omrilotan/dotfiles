@@ -57,6 +57,7 @@ $ dock
 	docker run --privileged -it -d --rm --volume $PWD:/app --name $name $image
 	# docker run --privileged -it -d --rm --volume $PWD:/app --name $name $image
 	# docker run --privileged -it -d $PWD:/app --name $name $image
+	# docker exec -it $name /bin/sh
 	for config_file in "${config_files[@]}"; do
 		docker cp ~/$config_file $name:/root/$config_file
 	done

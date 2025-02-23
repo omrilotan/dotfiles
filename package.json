@@ -17,6 +17,7 @@
     "http-server": "latest",
     "localtunnel": "latest",
     "npm": "latest",
+    "npm-check-updates": "latest",
     "npq": "latest",
     "typescript": "latest",
     "unimported": "latest",
@@ -26,6 +27,6 @@
     "yarn": "latest"
   },
   "devDependencies": {
-    "prettier": "^3.3.3"
+    "prettier": "latest"
   }
 }

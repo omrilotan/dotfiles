@@ -12,8 +12,13 @@ export PATH="$PATH:/usr/local/"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/usr/local/sbin"
 
+# Apple
+export PATH="$PATH:PATH=/usr/local/jamf/bin"
+
 # Specific locations
 export PATH="$PATH:/usr/X11/bin"
+
+# Homebrew
 export PATH="$PATH:/opt/homebrew/bin/"
 
 # Personal bin files (symlinkes from ~/dotfiles/.bin)
@@ -26,8 +31,8 @@ export PATH="$PATH:$HOME/dotfiles/node_modules/.bin/"
 directories=($(ls -d ~/dotfiles/*/ | grep -v node_modules))
 
 # `brew install coreutils` - milliseconds support in date is required. Using gnu date (gdate)
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
+export PATH="$PATH:/opt/homebrew/opt/gnu-tar/libexec/gnubin"
 
 command -v gdate >/dev/null 2>&1 || { echo >&2 "Requires gnu date (gdate) to work. Aborting. Run 'brew install coreutils'"; exit 1; }
 # alias date=gdate
@@ -48,7 +53,6 @@ for directory in "${directories[@]}"; do
 done
 
 echo -e "\033[0;33m🍮  ${POST_INIT}\033[0m"
-echo "\n"
 echo -n "$LOADING $POST_INIT"
 START=$(($(gdate +%s%N)/1000000))
 source ~/dotfiles/${POST_INIT}.sh

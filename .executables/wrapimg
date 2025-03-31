@@ -1,0 +1,61 @@
+#!/usr/bin/env python
+
+import zipfile
+import os
+import shutil
+import re
+import argparse
+
+def extract_epub(epub_path, extract_to):
+    """Extract EPUB to a temporary directory."""
+    with zipfile.ZipFile(epub_path, 'r') as zip_ref:
+        zip_ref.extractall(extract_to)
+
+def modify_xhtml_files(extract_to):
+    """Find and modify all XHTML files to wrap <img> in <p>."""
+    img_pattern = re.compile(r'(<img src="[^"]+"( id="[^"]+")?/>)')
+
+    for root, _, files in os.walk(extract_to):
+        for file in files:
+            if file.endswith(".xhtml"):
+                file_path = os.path.join(root, file)
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+
+                new_content = img_pattern.sub(r'<p>\1</p>', content)
+
+                if new_content != content:  # Only rewrite if changed
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(new_content)
+
+def repackage_epub(extract_to, output_epub):
+    """Repackage the modified EPUB."""
+    with zipfile.ZipFile(output_epub, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, _, files in os.walk(extract_to):
+            for file in files:
+                file_path = os.path.join(root, file)
+                arcname = os.path.relpath(file_path, extract_to)
+                zipf.write(file_path, arcname)
+
+def main():
+    parser = argparse.ArgumentParser(description="Fix EPUB image pagination issue by wrapping <img> tags in <p>.")
+    parser.add_argument("input", help="Path to input EPUB file")
+    parser.add_argument("output", nargs="?", help="Path to save the fixed EPUB file (defaults to input EPUB file)")
+    args = parser.parse_args()
+
+    output_epub = args.output if args.output else args.input
+
+    temp_dir = "temp_epub"
+    if os.path.exists(temp_dir):
+        shutil.rmtree(temp_dir)
+
+    os.makedirs(temp_dir)
+    extract_epub(args.input, temp_dir)
+    modify_xhtml_files(temp_dir)
+    repackage_epub(temp_dir, output_epub)
+
+    shutil.rmtree(temp_dir)
+    print(f"Fixed EPUB saved as: {output_epub}")
+
+if __name__ == "__main__":
+    main()

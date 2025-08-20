@@ -12,8 +12,9 @@ def extract_epub(epub_path, extract_to):
         zip_ref.extractall(extract_to)
 
 def modify_xhtml_files(extract_to):
-    """Find and modify all XHTML files to wrap <img> in <p>."""
+    """Find and modify all XHTML files to wrap <img> in <p>, if not already wrapped."""
     img_pattern = re.compile(r'(<img src="[^"]+"( id="[^"]+")?/>)')
+    wrapped_pattern = re.compile(r'<p><img src="[^"]+"( id="[^"]+")?/></p>')
 
     for root, _, files in os.walk(extract_to):
         for file in files:
@@ -21,6 +22,9 @@ def modify_xhtml_files(extract_to):
                 file_path = os.path.join(root, file)
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
+
+                if wrapped_pattern.search(content):
+                    continue  # Skip if already wrapped
 
                 new_content = img_pattern.sub(r'<p>\1</p>', content)
 
@@ -38,7 +42,7 @@ def repackage_epub(extract_to, output_epub):
                 zipf.write(file_path, arcname)
 
 def main():
-    parser = argparse.ArgumentParser(description="Fix EPUB image pagination issue by wrapping <img> tags in <p>.")
+    parser = argparse.ArgumentParser(description="Fix EPUB image pagination issue by wrapping <img> tags in <p>, if not already wrapped.")
     parser.add_argument("input", help="Path to input EPUB file")
     parser.add_argument("output", nargs="?", help="Path to save the fixed EPUB file (defaults to input EPUB file)")
     args = parser.parse_args()

@@ -30,11 +30,15 @@ cd() {
 		fi
 	fi
 
-	if [ -f ".python-version" ]; then
-		echo "Setup python env"
-		command -v && eval "$(pyenv init -)"
+	# if [ -f ".python-version" ]; then
+	# 	echo "Setup python env"
+	# 	command -v && eval "$(pyenv init -)"
 
+	# 	echo "Using python version $(cat .python-version)"
+	# 	pyenv local $(pyenv local)
+	# fi
+	if [ -f ".python-version" ]; then
 		echo "Using python version $(cat .python-version)"
-		pyenv local $(pyenv local)
+		uv venv
 	fi
 }

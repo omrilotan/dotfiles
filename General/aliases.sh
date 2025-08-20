@@ -10,6 +10,7 @@ alias ts='date +%Y-%m-%d\ %H:%M'
 alias dir='du -sh * | sort -h'
 alias disks='df -h'
 alias CURDIR=pwd
+alias ok=okteto
 
 # Dotfiles
 alias dotfiles='edit ~/dotfiles'

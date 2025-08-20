@@ -6,6 +6,6 @@ function get {
 	directory="$(basename $repo)"
 	directory=${directory%.*}
 	git clone $repo --recurse-submodules --remote-submodules
-	cd $directory
+	edit $directory
 	n
 }

@@ -13,12 +13,18 @@ q+=('("Acceptable shells" shells /etc/shells)')
 q+=('("Hyper config" .npmrc ~/.npmrc)')
 q+=('("Terminalizer config" .terminalizer.yml ~/.terminalizer/config.yml)')
 q+=('("Missing file" missing ~/.missing)')
+q+=('("VS code MCP" .symlinks/.vscode_mcp.json ~/.vscode/mcp.json)')
 
 for set in "${q[@]}";
 do
 	eval "parts=${set}"
 
-	if [[ ! -s "$HOME/dotfiles/${parts[1]}" ]]; then
+	if [[ ! -s "$HOME/dotfiles/${parts[2]}" ]]; then
+		if [[ -f ${parts[1]} ]]; then
+			ln -s "${parts[1]}" "${parts[2]}"
+			echo "created symlink for ${parts[0]}"
+		fi
+	elif [[ ! -s "$HOME/dotfiles/${parts[1]}" ]]; then
 		if [[ -f ${parts[2]} ]]; then
 			ln -s "${parts[2]}" "${parts[1]}"
 			echo "created symlink for ${parts[0]}"

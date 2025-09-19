@@ -1,34 +1,44 @@
 #!/bin/bash
 
 # Symlinks
+symlink_dir="$HOME/dotfiles/.symlinks"
 q=()
-q+=('("Bash profile" .bash_profile ~/.bash_profile)')
-q+=('("Bash profile" .bashrc ~/.bashrc)')
-q+=('("Git config" .gitconfig ~/.gitconfig)')
-q+=('("NPM config" .npmrc ~/.npmrc)')
-q+=('("VIM config" .vimrc ~/.vimrc)')
-q+=('("ngrok config" ngrok.yml ~/.ngrok2/ngrok.yml)')
-q+=('("Hosts file" hosts /etc/hosts)')
-q+=('("Acceptable shells" shells /etc/shells)')
-q+=('("Hyper config" .npmrc ~/.npmrc)')
-q+=('("Terminalizer config" .terminalizer.yml ~/.terminalizer/config.yml)')
-q+=('("Missing file" missing ~/.missing)')
-q+=('("VS code MCP" .symlinks/.vscode_mcp.json ~/.vscode/mcp.json)')
+q+=('("Bash profile" ${symlink_dir}/.bash_profile ~/.bash_profile)')
+q+=('("Bash config" ${symlink_dir}/.bashrc ~/.bashrc)')
+q+=('("Git config" ${symlink_dir}/.gitconfig ~/.gitconfig)')
+q+=('("VIM config" ${symlink_dir}/.vimrc ~/.vimrc)')
+q+=('("ngrok config" ${symlink_dir}/ngrok.yml ~/.ngrok2/ngrok.yml)')
+q+=('("Hosts file" /etc/hosts ${symlink_dir}/hosts)')
+q+=('("Acceptable shells" /etc/shells ${symlink_dir}/shells)')
+q+=('("NPM config" ${symlink_dir}/.npmrc ~/.npmrc)')
+q+=('("VS code MCP" ${symlink_dir}/.vscode_mcp.json ~/Library/Application\ Support/Code/User/mcp.json)')
+mkdir -p "$symlink_dir"
 
 for set in "${q[@]}";
 do
 	eval "parts=${set}"
+	name="${parts[0]}"
+	file="${parts[1]}"
+	link="${parts[2]}"
 
-	if [[ ! -s "$HOME/dotfiles/${parts[2]}" ]]; then
-		if [[ -f ${parts[1]} ]]; then
-			ln -s "${parts[1]}" "${parts[2]}"
-			echo "created symlink for ${parts[0]}"
-		fi
-	elif [[ ! -s "$HOME/dotfiles/${parts[1]}" ]]; then
-		if [[ -f ${parts[2]} ]]; then
-			ln -s "${parts[2]}" "${parts[1]}"
-			echo "created symlink for ${parts[0]}"
-		fi
+	if [[ ! -f ${file} && ! -f ${link} ]]; then
+		echo "✘ [${name}]: No files for ${name}, skip"
+		continue
+	fi
+	if [[ -s ${file} && -f ${link} && "$(readlink "${link}")" != ${file} ]]; then
+		echo "✘ [${name}]: Link ${file} exists but is not a symlink to ${link}, Please check manually"
+		continue
+	fi
+	if [[ ! -s ${file} && -f ${link} ]]; then
+		echo "✔︎ [${name}]: Move file to symlink dir and replace original with symlink"
+		mv "${link}" "${file}"
+		ln -s "${file}" "${link}"
+		continue
+	fi
+	if [[ -s ${file} && ! -f ${link} ]]; then
+		echo "✔︎ [${name}]: Create symlink to existing file"
+		ln -s "${file}" "${link}"
+		continue
 	fi
 done
 

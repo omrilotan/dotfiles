@@ -1,3 +1,4 @@
+# ln -s /Applications/Espanso.app/Contents/MacOS/espanso ./.bin/espanso
 function es {
 	case "$1" in
 		"edit")
@@ -5,11 +6,16 @@ function es {
 			return
 			;;
 		"update")
-			cat ~/dotfiles/.templates/espanso.yml > $(espanso path config)/config/default.yml
-			echo "matches:" > $(espanso path config)/match/base.yml
-			cat ~/dotfiles/.templates/espanso-matches.yml >> $(espanso path config)/match/base.yml
+			local espanso_config_path="$(espanso path config)"
+			if [[ ! -d "$espanso_config_path" ]]; then
+				echo "Espanso config path does not exist. (${espanso_config_path})"
+				exist 1
+			fi
+			cat ~/dotfiles/.templates/espanso.yml > "${espanso_config_path}/config/default.yml"
+			echo "matches:" > "${espanso_config_path}/match/base.yml"
+			cat ~/dotfiles/.templates/espanso-matches.yml >> "${espanso_config_path}/match/base.yml"
 			if [[ -f ~/dotfiles/.templates/.espanso.yml ]]; then
-			    cat ~/dotfiles/.templates/.espanso.yml >> $(espanso path config)/match/base.yml
+			    cat ~/dotfiles/.templates/.espanso.yml >> "${espanso_config_path}/match/base.yml"
 			fi
 
 			return

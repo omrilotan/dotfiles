@@ -5,3 +5,4 @@
 # eval "$(pyenv init -)"
 
 source $HOME/.local/bin/env
+export UV_VENV_CLEAR=1

@@ -15,6 +15,7 @@ const options = {
 	"extension": { short: "e", type: "string", multiple: false, description: "Use a specific extension" },
 	"quiet": { short: "q", type: "boolean", multiple: false, description: "Do not print anything" },
 	"start-from": { short: "s", type: "string", multiple: false, description: "Start numbering from a specific number" },
+	"order-by": { short: "o", type: "string", multiple: false, description: "Order files by 'name' or 'date'" },
 	"force": { short: "f", type: "boolean", multiple: false, description: "No matter the pattern you recognised, use basic algorithm" },
 };
 
@@ -53,7 +54,8 @@ async function start(
 		prefix = false,
 		quiet = false,
 		startFrom = "1",
-}
+		orderBy = "name",
+	}
 ) {
 	if (help) {
 		const { pathname: manfile } = new URL(join(dirname(import.meta.url), "man"));
@@ -82,7 +84,15 @@ async function start(
 	const filesAreNumbers = list.every(filename => filename.match(/^\d+\.(?:jpg|jpeg|png|gif|webp)$/));
 	let filesArePrefixEnumerated = list.every(filename => filename.match(/^\d+[_-]/));
 
-	if (filesAreNumbersWithSuffix) {
+	if (orderBy === "date") {
+		list = await Promise.all(list.map(async filename => {
+			const { ctime } = await stat(join(base, filename))
+			return { filename, ctime }
+		}))
+		list = list.sort((a, b) => a.ctime - b.ctime).map(({ filename }) => filename)
+	}
+
+	if (orderBy === "name" && filesAreNumbersWithSuffix) {
 		list = list.sort((a, b) => {
 			const aNumber = a.match(/(\d+)[-_\s](?:\d+)\.(?:jpg|jpeg|png|gif|webp)$/)[1];
 			const bNumber = b.match(/(\d+)[-_\s](?:\d+)\.(?:jpg|jpeg|png|gif|webp)$/)[1];

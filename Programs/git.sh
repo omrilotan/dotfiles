@@ -7,5 +7,5 @@ function get {
 	directory=${directory%.*}
 	git clone $repo --recurse-submodules --remote-submodules
 	edit $directory
-	n
+	name
 }

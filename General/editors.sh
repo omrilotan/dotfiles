@@ -1,7 +1,12 @@
-alias sublime='/Applications/Sublime\ Text\.app/Contents/SharedSupport/bin/subl'
-alias atom='/Applications/Atom.app/Contents/Resources/app/atom.sh'
-alias vscode='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
-alias cursorcode='/Applications/Cursor.app/Contents/Resources/app/bin/code'
+function sublime {
+	'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' "$@"
+}
+function vscode {
+	'/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code' "$@"
+}
+function cursorcode {
+	'/Applications/Cursor.app/Contents/Resources/app/bin/code' "$@"
+}
 alias github='/Applications/GitHub\ Desktop.app/Contents/Resources/app/static/github.sh open $(pwd)$@'
 
 function _editor_open {
@@ -41,9 +46,13 @@ function sub {
 	_editor_open sublime "$@"
 }
 
-alias edit='code'
+## Chosen editor
+function edit {
+	_editor_open vscode "$@"
+}
+
 function work {
-	code .
+	edit .
 	git pull origin master
 	name
 }

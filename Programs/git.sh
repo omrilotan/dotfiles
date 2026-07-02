@@ -9,3 +9,7 @@ function get {
 	edit $directory
 	name
 }
+
+function groot {
+	cd "$(git rev-parse --show-toplevel)"
+}

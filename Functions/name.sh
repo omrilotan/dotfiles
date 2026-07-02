@@ -23,4 +23,6 @@ function name {
 
 	echo -ne "\033]0;"$title"\007"
 }
-alias n=name
+function n {
+	name "$@"
+}

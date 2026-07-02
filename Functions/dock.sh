@@ -53,8 +53,8 @@ $ dock
 	local name=$2
 	: ${name:="dock${RANDOM}"}
 	echo "→ Run $image as $name"
-	echo "docker run --privileged -it -d --rm --volume $PWD:/app --name $name $image"
-	docker run --privileged -it -d --rm --volume $PWD:/app --name $name $image
+	echo "docker run --platform linux/amd64 --privileged -it -d --rm --volume $PWD:/app --name $name $image"
+	docker run --platform linux/amd64 --privileged -it -d --rm --volume $PWD:/app --name $name $image
 	# docker run --privileged -it -d --rm --volume $PWD:/app --name $name $image
 	# docker run --privileged -it -d $PWD:/app --name $name $image
 	# docker exec -it $name /bin/sh

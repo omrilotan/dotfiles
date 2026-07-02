@@ -7,3 +7,5 @@ __pycache__
 .hidden
 .hidden.*
 vendor/bundle/
+
+**/.claude/settings.local.json

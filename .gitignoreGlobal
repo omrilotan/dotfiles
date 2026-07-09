@@ -9,3 +9,4 @@ __pycache__
 vendor/bundle/
 
 **/.claude/settings.local.json
+**/.claude/.cc-writes/

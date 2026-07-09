@@ -5,8 +5,10 @@
  * npm run update -- npm snyk other
  */
 
-const exec = require("async-execute");
-const { dependencies } = require("../package.json");
+import { execute } from "async-execute";
+import pkg from "../package.json" with { type: "json" };
+
+const { dependencies } = pkg;
 
 (function () {
 	const {
@@ -22,7 +24,7 @@ async function update(...packages) {
 	const list = packages.map((pkg) => [pkg, "latest"].join("@")).join(" ");
 
 	console.log(`Update ${packages.join(", ")}`);
-	await exec(`npm i ${list} --no-save`, { pipe: true });
+	await execute(`npm i ${list} --no-save`, { pipe: true });
 }
 
 function intersect(...arrays) {

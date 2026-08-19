@@ -1,12 +1,3 @@
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWSTASHSTATE=true
-GIT_PS1_SHOWUNTRACKEDFILES=true
-GIT_PS1_SHOWUPSTREAM=true
-GIT_PS1_STATESEPARATOR=' '
-GIT_PS1_SHOWCOLORHINTS=true
-GIT_PS1_DESCRIBE_STYLE=default
-GIT_PS1_HIDE_IF_PWD_IGNORED=false
-
 # \n - New line
 # \! - History number
 # \d – Current date
@@ -33,11 +24,27 @@ GIT_PS1_HIDE_IF_PWD_IGNORED=false
 
 emojis=(⚡️ 🚀 🏄 🍒 🍎 ✨ 🔥 🐛 🐌 👉 😶 🐛 ☕️ 📍 🏮 🎈 🛎 💡 ⚽️ 🍓 🥚 🍪 🍩 🍺 🍻 🌕 🌍 🌞 🌝 🍀 🦎 🦋 🦖 🦕 🧟‍♂️ 👉 👽 🤡 👾 🤙 ✊ 🤘 🧛 ⛄️ 🌼 🍄 ☘️ 🐲 ☁️ 🍬 💎 🎀 💬 💭 🔔)
 
-if [ -n "$ZSH_VERSION" ]; then
-	autoload -Uz vcs_info
-	zstyle ':vcs_info:git:*' formats '%b'
-	precmd_functions+=(vcs_info)
-fi
+# Portable git status for the prompt: branch, staged (+), unstaged (✗), untracked (?), ahead (↑N), behind (↓N)
+function _git_prompt_info {
+	local branch ahead_behind ahead behind marks
+	branch="$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)"
+	[ -z "$branch" ] && return
+
+	marks=""
+	git diff --quiet --ignore-submodules 2>/dev/null || marks="${marks}✗"
+	git diff --cached --quiet --ignore-submodules 2>/dev/null || marks="${marks}+"
+	[ -n "$(git ls-files --others --exclude-standard 2>/dev/null)" ] && marks="${marks}?"
+
+	ahead_behind="$(git rev-list --left-right --count '@{u}...HEAD' 2>/dev/null)"
+	if [ -n "$ahead_behind" ]; then
+		behind="${ahead_behind%%[[:space:]]*}"
+		ahead="${ahead_behind##*[[:space:]]}"
+		[ "$ahead" != "0" ] && marks="${marks}↑${ahead}"
+		[ "$behind" != "0" ] && marks="${marks}↓${behind}"
+	fi
+
+	echo " (${branch}${marks:+ ${marks}})"
+}
 
 function icon {
 	if [ -z "$1" ]; then
@@ -53,9 +60,9 @@ function icon {
 	fi
 
 	if [ -n "$ZSH_VERSION" ]; then
-		export PROMPT='%F{red}%D{%H:%M}%f %F{green}%1~%f%F{yellow}${vcs_info_msg_0_:+ (${vcs_info_msg_0_})}%f ${face} '
+		export PROMPT='%F{red}%D{%H:%M}%f %F{green}%1~%f%F{yellow}$(_git_prompt_info)%f ${face} '
 	else
-		export PS1='\[\033[31m\]\D{%H:%M}\[\033[33m\] \[\033[32m\]\W\[\033[33m\]$(__git_ps1)\[\033[00m\] ${face} '
+		export PS1='\[\033[31m\]\D{%H:%M}\[\033[33m\] \[\033[32m\]\W\[\033[33m\]$(_git_prompt_info)\[\033[00m\] ${face} '
 	fi
 }
 icon

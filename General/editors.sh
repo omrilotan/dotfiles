@@ -22,7 +22,8 @@ function _editor_open {
 		$selected_editor $q
 		return 0
 	fi
-	set -- $(ls -a | grep $q --fixed-strings)
+	local matches=($(ls -a | grep $q --fixed-strings))
+	set -- "${matches[@]}"
 	if [ ! -z $1 ]; then
 		$selected_editor $1
 		return 0

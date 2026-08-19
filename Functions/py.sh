@@ -58,13 +58,13 @@ function py {
 				return 1
 			fi
 
-			versions=$(uv python list --only-installed 2>/dev/null | awk 'NF {print $1}')
+			versions=($(uv python list --only-installed 2>/dev/null | awk 'NF {print $1}'))
 			if [ -z "$versions" ]; then
 				echo "No installed Python versions found via uv"
 				return 1
 			fi
 
-			select version in $versions;
+			select version in "${versions[@]}";
 			do
 				if [ -z "$version" ]; then
 					echo "Invalid selection"

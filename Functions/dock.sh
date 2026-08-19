@@ -33,7 +33,7 @@ $ dock
 		do
 			if [ -z $image ]; then
 				return
-			elif [ $image == "Quit" ]; then
+			elif [ $image = "Quit" ]; then
 				return
 			else
 				break

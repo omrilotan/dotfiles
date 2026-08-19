@@ -16,7 +16,7 @@ $ search anything you want
 
 	local term=$*
 	if [ -z "$term" ]; then
-		read  -p 'Search for: ' term
+		ask term 'Search for: '
 	fi
 
 	echo """Select search engine:

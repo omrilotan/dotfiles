@@ -17,7 +17,8 @@ $ cd? modules
 		echo "Please add a query"
 		return 0
 	fi
-	set -- $(ls -a | grep $q --fixed-strings)
+	local matches=($(ls -a | grep $q --fixed-strings))
+	set -- "${matches[@]}"
 	if [ ! -z $1 ]; then
 		echo "Change directory to $1"
 		cd $1

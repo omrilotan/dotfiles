@@ -32,15 +32,31 @@ GIT_PS1_HIDE_IF_PWD_IGNORED=false
 # yellow bold: \[\033[33;1m\]
 
 emojis=(⚡️ 🚀 🏄 🍒 🍎 ✨ 🔥 🐛 🐌 👉 😶 🐛 ☕️ 📍 🏮 🎈 🛎 💡 ⚽️ 🍓 🥚 🍪 🍩 🍺 🍻 🌕 🌍 🌞 🌝 🍀 🦎 🦋 🦖 🦕 🧟‍♂️ 👉 👽 🤡 👾 🤙 ✊ 🤘 🧛 ⛄️ 🌼 🍄 ☘️ 🐲 ☁️ 🍬 💎 🎀 💬 💭 🔔)
+
+if [ -n "$ZSH_VERSION" ]; then
+	autoload -Uz vcs_info
+	zstyle ':vcs_info:git:*' formats '%b'
+	precmd_functions+=(vcs_info)
+fi
+
 function icon {
 	if [ -z "$1" ]; then
-		RANDOM=$$$(date +%s)
-		face=${emojis[$RANDOM % ${#emojis[@]} ]}
+		if [ -n "$ZSH_VERSION" ]; then
+			# zsh arrays are 1-indexed
+			face=${emojis[$((RANDOM % ${#emojis[@]} + 1))]}
+		else
+			RANDOM=$$$(date +%s)
+			face=${emojis[$RANDOM % ${#emojis[@]} ]}
+		fi
 	else
 		face="$1"
 	fi
 
-	export PS1='\[\033[31m\]\D{%H:%M}\[\033[33m\] \[\033[32m\]\W\[\033[33m\]$(__git_ps1)\[\033[00m\] ${face} '
+	if [ -n "$ZSH_VERSION" ]; then
+		export PROMPT='%F{red}%D{%H:%M}%f %F{green}%1~%f%F{yellow}${vcs_info_msg_0_:+ (${vcs_info_msg_0_})}%f ${face} '
+	else
+		export PS1='\[\033[31m\]\D{%H:%M}\[\033[33m\] \[\033[32m\]\W\[\033[33m\]$(__git_ps1)\[\033[00m\] ${face} '
+	fi
 }
 icon
 

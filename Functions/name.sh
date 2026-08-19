@@ -10,7 +10,7 @@ function name {
 
 	if [[ -z ${title} ]]
 	then
-		if [ "$inside_git_repo" == "true" ]
+		if [ "$inside_git_repo" = "true" ]
 		then
 			title=$(basename `git rev-parse --show-toplevel`)
 		fi

@@ -18,11 +18,11 @@ $ aws_mfa
 	local token=$2
 
 	while [[ -z $profile ]]; do
-		read -p 'Enter AWS profile name: ' -r profile
+		ask profile 'Enter AWS profile name: '
 	done
 
 	while [[ -z $token ]]; do
-		read -p 'Enter your one-time token: ' -r token
+		ask token 'Enter your one-time token: '
 	done
 
 	identity="$(aws --profile $profile sts get-caller-identity)"

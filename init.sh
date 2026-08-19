@@ -2,6 +2,15 @@ LOADING="⏳"
 CHECK_MARK="\033[0;32m\xE2\x9C\x94\033[0m"
 POST_INIT="pudding"
 
+# zsh compatibility bootstrap (must run before any *.sh below relies on
+# `complete`/`compdef`, e.g. Programs/kubectl.sh, Programs/node-complete.sh)
+if [ -n "$ZSH_VERSION" ]; then
+	setopt NULL_GLOB
+	setopt PROMPT_SUBST
+	autoload -Uz compinit && compinit -u
+	autoload -Uz bashcompinit && bashcompinit
+fi
+
 # reset path
 export PATH=""
 export PATH="$PATH:/bin"

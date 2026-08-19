@@ -5,9 +5,9 @@ symlink_dir="$HOME/dotfiles/.symlinks"
 q=()
 q+=('("Bash profile" ${symlink_dir}/.bash_profile ~/.bash_profile)')
 q+=('("Bash config" ${symlink_dir}/.bashrc ~/.bashrc)')
+q+=('("Zsh config" ${symlink_dir}/.zshrc ~/.zshrc)')
 q+=('("Git config" ${symlink_dir}/.gitconfig ~/.gitconfig)')
 q+=('("VIM config" ${symlink_dir}/.vimrc ~/.vimrc)')
-q+=('("ngrok config" ${symlink_dir}/ngrok.yml ~/.ngrok2/ngrok.yml)')
 q+=('("Hosts file" /etc/hosts ${symlink_dir}/hosts)')
 q+=('("Acceptable shells" /etc/shells ${symlink_dir}/shells)')
 q+=('("NPM config" ${symlink_dir}/.npmrc ~/.npmrc)')
@@ -54,9 +54,13 @@ fi
 node --completion-bash > ~/dotfiles/Programs/node-complete.sh
 
 # This library's init
-if [[ -z $(cat ~/.bash_profile | grep "dotfiles/init.sh") ]]; then
-	echo "source ~/dotfiles/init.sh" >> .bash_profile
+if [[ -z $(cat ~/.bash_profile 2>/dev/null | grep "dotfiles/init.sh") ]]; then
+	echo "source ~/dotfiles/init.sh" >> ~/.bash_profile
 	echo "Added call to init to bash_profile"
+fi
+if [[ -z $(cat ~/.zshrc 2>/dev/null | grep "dotfiles/init.sh") ]]; then
+	echo "source ~/dotfiles/init.sh" >> ~/.zshrc
+	echo "Added call to init to zshrc"
 fi
 
 git config --global core.excludesfile ~/dotfiles/.gitignoreGlobal

@@ -1,4 +1,8 @@
 if command -v kubectl &> /dev/null
 then
-	source <(kubectl completion bash)
+	if [ -n "$ZSH_VERSION" ]; then
+		source <(kubectl completion zsh)
+	else
+		source <(kubectl completion bash)
+	fi
 fi
